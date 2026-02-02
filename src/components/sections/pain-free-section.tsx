@@ -11,7 +11,7 @@ export function PainFreeSection() {
             <span className="bg-white/80 backdrop-blur px-3 py-1 rounded-full text-[#3E522D] text-xs font-bold tracking-wider mb-6 inline-block border border-[#3E522D]/10">
               PAIN CONTROL SYSTEM
             </span>
-            <h2 className="text-3xl md:text-5xl font-serif font-bold text-[#1A1F16] mb-6 leading-tight">
+            <h2 className="text-2xl md:text-5xl font-serif font-bold text-[#1A1F16] mb-6 leading-tight">
               수술의 두려움,<br />
               <span className="text-[#3E522D]">잠시 꿈꾸는 동안</span> 끝납니다.
             </h2>

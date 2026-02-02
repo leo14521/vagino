@@ -1,12 +1,14 @@
 // src/app/page.tsx
 
 import { SideNav } from "@/components/sections/side-nav";
-// Footer는 보통 layout.tsx에 있지만, 여기서 사용하지 않는다면 지워도 됩니다.
-// import { Footer } from "@/components/layout/footer"; 
 
-// Sections Import
+// [수정 완료] HeroSection은 hero-section 파일에서 가져옵니다.
 import { HeroSection } from "@/components/sections/hero-section";
-import { InsightSection } from "@/components/sections/insight-section";
+
+// [핵심 수정] InsightSection은 방금 만드신 "insight-section.tsx" 파일에서 가져와야 합니다!
+import { InsightSection } from "@/components/sections/insight-section"; 
+
+// 나머지 섹션들은 그대로 유지
 import { ComparisonSection } from "@/components/sections/comparison-section";
 import { AnatomySection } from "@/components/sections/anatomy-section";
 import { PainFreeSection } from "@/components/sections/pain-free-section";
@@ -14,7 +16,7 @@ import { BrandVideoSection } from "@/components/sections/brand-video-section";
 import { AuthoritySection } from "@/components/sections/authority-section";
 import { ReviewSection } from "@/components/sections/review-section";
 import { FAQSection } from "@/components/sections/faq-section";
-import { FacilityTour } from "@/components/home/FacilityTour"; // 새로 추가한 컴포넌트
+import { FacilityTour } from "@/components/home/FacilityTour"; 
 import { ConsultationSection } from "@/components/sections/consultation-section";
 
 export default function Home() {
@@ -29,8 +31,9 @@ export default function Home() {
         <HeroSection />
       </div>
 
-      {/* 2. Problem */}
+      {/* 2. Problem & Solution (스토리텔링 + 자가진단) */}
       <div id="insight">
+        {/* 이제 insight-section.tsx의 내용(스토리텔링+체크리스트)이 여기에 뜹니다 */}
         <InsightSection />
       </div>
 

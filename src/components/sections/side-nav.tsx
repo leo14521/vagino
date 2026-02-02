@@ -1,28 +1,38 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { cn } from "@/lib/utils";
+// react-scroll 라이브러리 설치 필요
+import { Link as ScrollLink } from "react-scroll"; 
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X } from "lucide-react";
 
-// 섹션 정의 (ID는 page.tsx의 id와 일치해야 합니다)
-const SECTIONS = [
-  { id: "hero", label: "Home" },
-  { id: "insight", label: "Insight" },
-  { id: "comparison", label: "Solution" },
-  { id: "anatomy", label: "Anatomy" },
-  { id: "pain-free", label: "Pain Free" },
-  { id: "brand-video", label: "Brand Film" },
-  { id: "authority", label: "Doctors" },
-  { id: "review", label: "Reviews" },
+// page.tsx에 있는 실제 섹션 ID들과 일치해야 합니다.
+const NAV_ITEMS = [
+  { id: "hero", label: "홈" },
+  { id: "insight", label: "자가 진단" },
+  { id: "comparison", label: "수술 원리" },
+  { id: "anatomy", label: "3D 복원" },
+  { id: "pain-free", label: "통증 케어" },
+  { id: "brand-video", label: "브랜드 필름" },
+  { id: "authority", label: "의료진 소개" },
+  { id: "review", label: "리얼 후기" },
   { id: "faq", label: "FAQ" },
-  { id: "tour", label: "Facility" }, // 시설 안내 추가됨
-  { id: "consultation", label: "Contact" },
+  { id: "consultation", label: "상담 신청" },
 ];
 
 export function SideNav() {
-  const [activeSection, setActiveSection] = useState("");
+  const [activeSection, setActiveSection] = useState("hero");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // 스크롤 감지 및 활성 섹션 업데이트
+  // 하이드레이션 에러 방지
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -31,63 +41,105 @@ export function SideNav() {
           }
         });
       },
-      {
-        rootMargin: "-50% 0px -50% 0px", // 화면 중앙에 왔을 때 감지
-      }
+      { threshold: 0.3 }
     );
 
-    SECTIONS.forEach(({ id }) => {
-      const element = document.getElementById(id);
+    NAV_ITEMS.forEach((item) => {
+      const element = document.getElementById(item.id);
       if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [isMounted]);
 
-  // 클릭 시 부드러운 스크롤 이동
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+  if (!isMounted) return null;
 
   return (
-    <nav className="fixed left-10 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-5 items-start">
-      {SECTIONS.map((section) => {
-        const isActive = activeSection === section.id;
+    <>
+      {/* 1. Desktop Side Navigation (Left Fixed) */}
+      <nav className="fixed left-6 top-1/2 -translate-y-1/2 z-50 hidden lg:flex flex-col gap-5">
+        <div className="absolute left-[7px] top-0 bottom-0 w-[1px] bg-[#1A1F16]/10 -z-10" />
 
-        return (
-          <button
-            key={section.id}
-            onClick={() => scrollToSection(section.id)}
-            className="group flex items-center gap-3 cursor-pointer outline-none"
-            aria-label={`Go to ${section.label}`}
-          >
-            {/* 1. 도트 (Dot) */}
-            <div
-              className={cn(
-                "transition-all duration-300 ease-in-out order-1", // order-1로 도트 먼저 배치
-                isActive
-                  ? "w-1.5 h-8 rounded-lg bg-[#3E522D]" // 활성: 길어짐 (Height 30px 느낌)
-                  : "w-1.5 h-1.5 rounded-full bg-gray-300 group-hover:bg-[#3E522D] group-hover:scale-150" // 비활성: 원형
-              )}
-            />
-
-            {/* 2. 라벨 (Label) */}
-            <span
-              className={cn(
-                "order-2 text-xs font-bold tracking-tight px-2.5 py-1 rounded bg-white/90 text-[#3E522D] shadow-sm whitespace-nowrap transition-all duration-300 transform",
-                isActive
-                  ? "opacity-100 translate-x-0" // 활성 상태면 항상 보임
-                  : "opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0" // 비활성이면 호버시에만 보임
-              )}
+        {NAV_ITEMS.map((item) => {
+          const isActive = activeSection === item.id;
+          return (
+            <ScrollLink
+              key={item.id}
+              to={item.id}
+              smooth={true}
+              duration={800}
+              offset={0}
+              spy={true}
+              className="group flex items-center gap-4 cursor-pointer relative"
+              onSetActive={() => setActiveSection(item.id)}
             >
-              {section.label}
-            </span>
-          </button>
-        );
-      })}
-    </nav>
+              {/* Dot Indicator */}
+              <div 
+                className={`w-3.5 h-3.5 rounded-full border-2 transition-all duration-300 relative z-10
+                  ${isActive 
+                    ? "bg-[#C5A065] border-[#C5A065] scale-100" 
+                    : "bg-[#FDFBF7] border-[#1A1F16]/20 scale-75 group-hover:border-[#C5A065] group-hover:scale-90"}`}
+              />
+
+              {/* Label */}
+              <span 
+                className={`text-[10px] font-bold tracking-widest uppercase transition-all duration-300 whitespace-nowrap
+                  ${isActive 
+                    ? "text-[#C5A065] opacity-100 translate-x-0" 
+                    : "text-[#1A1F16] opacity-0 -translate-x-4 group-hover:opacity-60 group-hover:translate-x-0"}`}
+              >
+                {item.label}
+              </span>
+            </ScrollLink>
+          );
+        })}
+      </nav>
+
+      {/* 2. Mobile Navigation (Hamburger) */}
+      <div className="lg:hidden fixed top-6 right-6 z-50">
+        <button 
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="p-3 bg-[#121412]/80 backdrop-blur-md rounded-full border border-white/10 text-white shadow-lg"
+        >
+          <Menu className="w-5 h-5" />
+        </button>
+      </div>
+
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[60] bg-[#121412] flex flex-col items-center justify-center lg:hidden"
+          >
+            <button 
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="absolute top-6 right-6 p-3 text-white/50 hover:text-white"
+            >
+              <X className="w-8 h-8" />
+            </button>
+
+            <ul className="space-y-6 text-center">
+              {NAV_ITEMS.map((item) => (
+                <li key={item.id}>
+                  <ScrollLink
+                    to={item.id}
+                    smooth={true}
+                    duration={800}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className={`text-xl font-serif font-medium transition-colors cursor-pointer
+                      ${activeSection === item.id ? "text-[#C5A065]" : "text-white hover:text-[#C5A065]/60"}`}
+                  >
+                    {item.label}
+                  </ScrollLink>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }

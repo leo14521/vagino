@@ -13,7 +13,7 @@ export function ComparisonSection() {
           <span className="text-[#3E522D] font-bold tracking-widest text-xs uppercase mb-3 block">
             Why Trinity?
           </span>
-          <h2 className="text-3xl md:text-4xl font-serif font-bold text-[#1A1F16]">
+          <h2 className="text-2xl md:text-4xl font-serif font-bold text-[#1A1F16]">
             똑같은 '질성형'이 아닙니다<br />
             <span className="text-[#3E522D] text-underline-point">결과의 차이</span>를 확인하세요
           </h2>
