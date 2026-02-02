@@ -11,7 +11,7 @@ const DOCTORS = [
     // [Dr. Jung] 고려대 의학박사 + 국제 학회 교수 + 하이푸/RFA 마스터 + 방송 자문
     tags: ["UNIVERSITY PROFESSOR", "GLOBAL KEY DOCTOR", "의학박사"],
     quote: "대학병원 교수 출신의 풍부한 수술 경험으로, 안전을 최우선으로 하는 원칙 진료를 약속합니다.",
-    imageSrc: "/images/dr-jung.jpg", 
+    imageSrc: "/images/dr-jung.webp", 
     careers: [
       "고려대학교 의과대학 졸업 및 의학박사",
       "스웨덴 Uppsala Univ. 생식생물학센터(CRB) 연수",
@@ -28,7 +28,7 @@ const DOCTORS = [
     // [Dr. Yang] 경희대 의학박사 + 갱년기/자궁근종 저자 + 방송 자문 + 로컬 수술 경험
     tags: ["AESTHETIC SPECIALIST", "BEST SELLING AUTHOR", "의학박사"],
     quote: "여성의 자신감을 되찾아드리는 섬세한 디자인, 기능과 미용을 동시에 충족시킵니다.",
-    imageSrc: "/images/dr-yang.jpg", 
+    imageSrc: "/images/dr-yang.webp", 
     careers: [
       "경희대학교 의과대학 졸업 및 의학박사",
       "경희대학교 의과대학 외래교수 / 산부인과 전문의", // 추가
