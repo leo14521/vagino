@@ -77,7 +77,7 @@ export function BrandVideoSection() {
           loop        // 반복 재생
         >
           {/* 파일 경로 확인: public/videos/brand-film.mp4 */}
-          <source src="/videos/brand-film.mp4" type="video/mp4" />
+          <source src="/videos/brand-film_opt.mp4" type="video/mp4" />
           브라우저가 비디오 태그를 지원하지 않습니다.
         </video>
         
