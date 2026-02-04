@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+// import localFont from "next/font/local"; // 사용하지 않는다면 주석 처리
 import { Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-import { Header } from "@/components/layout/header";
-import { Footer } from "@/components/layout/footer";
+// import { Header } from "@/components/layout/header"; // 헤더가 필요 없다면 주석 처리
 import { cn } from "@/lib/utils";
 
-// 폰트 설정 (Pretendard는 웹폰트로 대체, Noto Serif는 구글)
+// 1. 새로 만든 컴포넌트 임포트
+import Footer from "@/components/layout/footer"; 
+import FloatingBanner from "@/components/layout/floating-banner";
+
+// 폰트 설정 (기존 설정 유지)
 const notoSerif = Noto_Serif_KR({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
@@ -15,9 +18,10 @@ const notoSerif = Noto_Serif_KR({
   variable: "--font-noto-serif",
 });
 
+// 2. 메타데이터 업데이트 (RFA 센터 내용으로 변경)
 export const metadata: Metadata = {
-  title: "Trinity Women's Clinic | True Vaginoplasty",
-  description: "여성의 잃어버린 자신감을 되찾아주는 트리니티 여성성형 센터입니다.",
+  title: "질성형수술 | 건강한 탄력복원을 중심으로",
+  description: "이쁜이수술도 역시 트리니티 여성의원",
 };
 
 export default function RootLayout({
@@ -28,7 +32,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <head>
-        {/* ... (생략) */}
+        {/* 필요한 head 태그 내용이 있다면 여기에 유지 */}
       </head>
       <body
         className={cn(
@@ -38,14 +42,23 @@ export default function RootLayout({
         style={{ fontFamily: '"Pretendard Variable", Pretendard, sans-serif' }}
       >
         <SmoothScrollProvider>
-         
           
-          {/* ▼▼▼ [수정된 부분] overflow-x-hidden 삭제, clip-path 추가 ▼▼▼ */}
-          <main className="relative flex flex-col w-full min-h-screen"> 
+          {/* 메인 콘텐츠 영역 */}
+          {/* 기존 clip-path 등의 설정 유지 */}
+          <main className="relative flex flex-col w-full min-h-screen">
             {children}
           </main>
-          
+
+          {/* 3. 푸터 추가 */}
+          {/* 푸터는 페이지 흐름의 맨 마지막에 위치하므로 ScrollProvider 안, main 뒤에 둡니다. */}
+          <Footer />
+
         </SmoothScrollProvider>
+
+        {/* 4. 플로팅 배너 추가 */}
+        {/* 플로팅 요소(fixed)는 스크롤/transform의 영향을 받지 않도록 Provider 밖에 두는 것이 안전합니다. */}
+        <FloatingBanner />
+        
       </body>
     </html>
   );

@@ -60,7 +60,7 @@ export function FAQSection() {
             FAQ
           </h2>
           <span className="text-lg md:text-xl font-medium text-[#5A6B5D] mb-2 md:mb-0">
-            Frequently Asked Questions
+            자주 여쭤보시는 질문들
           </span>
         </div>
 

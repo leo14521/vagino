@@ -15,10 +15,11 @@ export function PainFreeSection() {
               수술의 두려움,<br />
               <span className="text-[#3E522D]">잠시 꿈꾸는 동안</span> 끝납니다.
             </h2>
-            <p className="text-[#6B7264] text-lg leading-relaxed mb-8">
+            <p className="text-[#6B7264] text-lg leading-relaxed mb-5">
               "아플까 봐 걱정되시나요?"<br />
-              트리니티는 대학병원급 마취 시스템과 3단계 통증 케어로
-              수술 중 통증을 0에 가깝게 관리합니다. 자고 일어나면 모든 과정이 끝나있습니다.
+              트리니티는 3단계 통증 케어로<br></br>
+              수술 중 통증부담을 최대한 줄여 관리합니다.
+              <br></br>자고 일어나면 모든 과정이 끝나있습니다.
             </p>
           </div>
 

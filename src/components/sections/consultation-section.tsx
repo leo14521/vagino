@@ -31,32 +31,47 @@ export function ConsultationSection() {
         {/* 2. 메인 카드 (White Box with Rounded Corners) */}
         <div className="bg-[#FAF9F6] rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col lg:flex-row">
           
-          {/* Left: Branding & Message Area */}
+          {/* Left: Branding & Message Area [수정된 부분] */}
           <div className="lg:w-2/5 p-10 lg:p-14 bg-[#F5F2EB] flex flex-col justify-center">
-            <h2 className="font-kopub text-4xl md:text-5xl text-[#1A1F16] leading-tight mb-6">
-              Your Care <br />
-              <span className="italic font-bold">Starts Here.</span>
+            
+            {/* 영문 키커 (Premium & Private 느낌 강조) */}
+            <span className="font-gmarket-bold text-[#2E3A30] tracking-[0.2em] text-[15px] uppercase mb-4 block opacity-60">
+                여의사 대표원장 1:1 상담
+            </span>
+
+            {/* 메인 헤드라인 (3040 타겟 페인 포인트 자극) */}
+            <h2 className="font-kopub text-2xl md:text-3xl text-[#1A1F16] leading-tight mb-6 break-keep">
+              미뤄왔던 고민, <br className="hidden md:block"/> 
+              지금 여기서, <br />
+              <span className="text-[#3E4A3D] font-bold">끝낼 수 있습니다.</span>
             </h2>
             
-            <p className="font-pretendard text-[#5C5C5C] text-lg leading-relaxed mb-10">
-              전문 상담원이 친절하게 안내해 드립니다.<br/>
-              고민하지 말고 편하게 문의주세요.
+            {/* 서브 카피 (공감 + 여의사 강점 강조) */}
+            <p className="font-pretendard text-[#5C5C5C] text-lg leading-relaxed mb-10 break-keep">
+              "정말 수술밖에 답이 없을까요?"<br/>
+              불안한 마음까지 헤아리는 <strong className="text-[#2E3A30]"><br></br>여의사 산부인과</strong>,<br/>
+              트리니티가 당신의 자궁을 지키는 <br></br>해답을 드립니다.
             </p>
 
+            {/* 체크리스트 (구체적 이득 제시) */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#2E3A30]" />
-                <span className="font-pretendard font-bold text-[#2E3A30] text-sm">1:1 맞춤형 정밀 상담</span>
+                <CheckCircle2 className="w-5 h-5 text-[#2E3A30] flex-shrink-0" />
+                <span className="font-pretendard font-bold text-[#2E3A30] text-sm">누구에게도 말 못한 통증 1:1 심층 상담</span>
               </div>
               <div className="flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#2E3A30]" />
-                <span className="font-pretendard font-bold text-[#2E3A30] text-sm">시술 예상 비용 및 실비 보험 안내</span>
+                <CheckCircle2 className="w-5 h-5 text-[#2E3A30] flex-shrink-0" />
+                <span className="font-pretendard font-bold text-[#2E3A30] text-sm">내 증상에 딱 맞는 비수술 치료 설계</span>
+              </div>
+              <div className="flex items-center gap-3">
+                <CheckCircle2 className="w-5 h-5 text-[#2E3A30] flex-shrink-0" />
+                <span className="font-pretendard font-bold text-[#2E3A30] text-sm">비용 및 실비 보험 적용 여부 확인</span>
               </div>
             </div>
           </div>
 
 
-          {/* Right: Input Form Area */}
+          {/* Right: Input Form Area (기존 유지) */}
           <div className="lg:w-3/5 p-10 lg:p-14 bg-white">
             <form className="space-y-8">
               
