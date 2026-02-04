@@ -33,6 +33,13 @@ export default function RootLayout({
     <html lang="ko" className="scroll-smooth">
       <head>
         {/* 필요한 head 태그 내용이 있다면 여기에 유지 */}
+        <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-K322C26Q');</script>
+<!-- End Google Tag Manager -->
       </head>
       <body
         className={cn(
@@ -58,7 +65,10 @@ export default function RootLayout({
         {/* 4. 플로팅 배너 추가 */}
         {/* 플로팅 요소(fixed)는 스크롤/transform의 영향을 받지 않도록 Provider 밖에 두는 것이 안전합니다. */}
         <FloatingBanner />
-        
+        <!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K322C26Q"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
       </body>
     </html>
   );
