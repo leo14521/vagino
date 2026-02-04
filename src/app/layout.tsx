@@ -99,7 +99,7 @@ export default function RootLayout({
         {/* 4. 플로팅 배너 추가 */}
         {/* 플로팅 요소(fixed)는 스크롤/transform의 영향을 받지 않도록 Provider 밖에 두는 것이 안전합니다. */}
         <FloatingBanner />
-        
+        <meta name="google-site-verification" content="YNzZSPJkQ4t7maISPeY3S24_D2KHiB1_EYlIfMSpPbs" />
       </body>
     </html>
   );
