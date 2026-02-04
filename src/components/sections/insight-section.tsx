@@ -163,10 +163,19 @@ function StorytellingPart() {
                ))}
             </div>
             <div className="flex justify-start md:justify-end mt-6 md:mt-0">
-               <Button className="w-full md:w-auto h-14 md:h-16 px-8 md:px-10 rounded-full bg-[#2E3A30] text-white hover:bg-[#1A211B] text-lg md:text-xl shadow-lg transition-transform hover:scale-105 font-pretendard">
-                 1:1 상담 신청하기 <ArrowRight className="ml-2 w-5 h-5" />
-               </Button>
-            </div>
+            <Button 
+              // ▼▼▼ [수정] 클릭 시 'consultation' ID를 가진 섹션으로 부드럽게 이동 ▼▼▼
+              onClick={() => {
+                const section = document.getElementById('consultation');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+              className="w-full md:w-auto h-14 md:h-16 px-8 md:px-10 rounded-full bg-[#2E3A30] text-white hover:bg-[#1A211B] text-lg md:text-xl shadow-lg transition-transform hover:scale-105 font-pretendard"
+            >
+              1:1 상담 신청하기 <ArrowRight className="ml-2 w-5 h-5" />
+            </Button>
+          </div>
           </div>
         </motion.div>
       </div>
