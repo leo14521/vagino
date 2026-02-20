@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { CheckCircle2, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import styles from "styled-jsx/style";
 
 // 발급받으신 URL (그대로 유지)
 const GOOGLE_SCRIPT_URL =
@@ -94,7 +93,7 @@ export function ConsultationSection() {
               </span>
             </h2>
             <p className="font-pretendard text-[#5C5C5C] text-lg leading-relaxed mb-10 break-keep">
-              "정말 수술밖에 답이 없을까요?"
+              &ldquo;정말 수술밖에 답이 없을까요?&rdquo;
               <br />
               불안한 마음까지 헤아리는{" "}
               <strong className="text-[#2E3A30]">
