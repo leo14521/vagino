@@ -1,6 +1,7 @@
 // src/components/layout/footer.tsx
 import Link from "next/link";
 import { Phone, Calendar } from "lucide-react";
+import { FooterLocationSection } from "@/components/layout/footer-location";
 
 export default function Footer() {
   return (
@@ -45,12 +46,14 @@ export default function Footer() {
           </div>
         </div>
 
+        <FooterLocationSection />
+
         {/* 병원 정보 3열 그리드 */}
         <div className="max-w-5xl mx-auto px-6 py-16 lg:py-20">
           {/* PC: 3열 그리드, 상단 정렬·간격 축소로 균형 */}
           <div className="flex flex-col gap-12 lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-start lg:gap-x-12 lg:gap-y-0">
             {/* 로고: Trinity + 트리니티여성의원 한 줄, 간격 충분히 */}
-            <div className="lg:justify-self-start">
+            <div className="lg:justify-self-start flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
               <Link
                 href="/"
                 className="inline-flex items-baseline gap-3 hover:opacity-80 transition-opacity"
@@ -62,6 +65,15 @@ export default function Footer() {
                   트리니티여성의원
                 </span>
               </Link>
+              <nav className="flex gap-3 text-sm">
+                <Link href="/" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  질성형수술
+                </Link>
+                <span className="text-[#E9E4DB]">|</span>
+                <Link href="/sling" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  요실금 미니슬링
+                </Link>
+              </nav>
             </div>
 
             {/* 병원 정보: 줄 나눠서 사업자등록번호가 중간에 잘리지 않도록 */}
