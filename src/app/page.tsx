@@ -60,8 +60,8 @@ export default function Home() {
         <BrandVideoSection />
       </div>
 
-      {/* 8. Authority */}
-      <div id="authority">
+      {/* 8. Authority (앵커: #doctors) */}
+      <div id="doctors">
         <AuthoritySection />
       </div>
 

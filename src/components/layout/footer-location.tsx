@@ -13,7 +13,7 @@ export function FooterLocationSection() {
   return (
     <section
       id="location"
-      className="py-24 lg:py-32 bg-white border-t border-[#E9E4DB]/50"
+      className="py-24 lg:py-32 bg-white border-t border-[#E9E4DB]/50 scroll-mt-24"
     >
       <style>{`
         @font-face {
@@ -39,8 +39,11 @@ export function FooterLocationSection() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-8 lg:gap-12">
-          {/* 진료시간 */}
-          <div className="bg-[#FDFCFB] rounded-[2rem] p-8 lg:p-10 border border-[#E9E4DB] shadow-sm">
+          {/* 진료시간 (#hours: 사이드내비·직링크 앵커) */}
+          <div
+            id="hours"
+            className="bg-[#FDFCFB] rounded-[2rem] p-8 lg:p-10 border border-[#E9E4DB] shadow-sm scroll-mt-24"
+          >
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-[#F1F4ED] flex items-center justify-center text-[#3E522D]">
                 <Clock className="w-6 h-6" aria-hidden />
