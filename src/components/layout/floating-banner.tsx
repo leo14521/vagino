@@ -1,7 +1,7 @@
 // src/components/layout/floating-banner.tsx
 "use client";
 
-import { Phone, Calendar, MousePointer2, CalendarCheck } from "lucide-react";
+import { Phone, MousePointer2, CalendarCheck, MessageCircle } from "lucide-react";
 
 export default function FloatingBanner() {
   return (
@@ -23,25 +23,18 @@ export default function FloatingBanner() {
           </div>
         </a>
 
-        {/* 카카오 상담 */}
+        {/* 네이버 톡톡 */}
         <a
-          href="https://pf.kakao.com/_NCAlxb"
+          href="https://talk.naver.com/profile/w4tsxu"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#FEE500]/20 rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
+          className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#03C75A]/20 rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
         >
           <span className="flex-1 text-sm font-bold text-[#1A1F16]">
-            카카오 상담
+            네이버 톡톡
           </span>
-          <div className="w-10 h-10 rounded-full bg-[#FEE500] flex items-center justify-center shrink-0">
-            {/* 카카오 SVG 아이콘 */}
-            <svg
-              className="w-5 h-5 fill-[#3C1E1E]"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 3C7.58 3 4 5.79 4 9.24C4 11.22 5.21 12.96 7.06 14.12L6.34 16.74C6.29 16.93 6.47 17.1 6.66 17.02L9.84 15.69C10.53 15.82 11.26 15.89 12 15.89C16.42 15.89 20 13.1 20 9.65C20 6.21 16.42 3 12 3Z" />
-            </svg>
+          <div className="w-10 h-10 rounded-full bg-[#03C75A] flex items-center justify-center shrink-0 text-white">
+            <MessageCircle className="w-5 h-5" strokeWidth={2.2} />
           </div>
         </a>
 
@@ -93,22 +86,18 @@ export default function FloatingBanner() {
             </span>
           </a>
 
-          {/* 카카오 */}
+          {/* 네이버 톡톡 */}
           <a
-            href="https://pf.kakao.com/_NCAlxb"
+            href="https://talk.naver.com/profile/w4tsxu"
             target="_blank"
             rel="noopener noreferrer"
             className="flex flex-col items-center justify-center gap-1 active:bg-gray-50 border-r border-[#E9E4DB]/50"
           >
-            <svg
-              className="w-5 h-5 fill-[#3C1E1E]"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 3C7.58 3 4 5.79 4 9.24C4 11.22 5.21 12.96 7.06 14.12L6.34 16.74C6.29 16.93 6.47 17.1 6.66 17.02L9.84 15.69C10.53 15.82 11.26 15.89 12 15.89C16.42 15.89 20 13.1 20 9.65C20 6.21 16.42 3 12 3Z" />
-            </svg>
+            <div className="w-5 h-5 rounded-full bg-[#03C75A] flex items-center justify-center text-white">
+              <MessageCircle className="w-3.5 h-3.5" strokeWidth={2.2} />
+            </div>
             <span className="text-[10px] font-bold text-[#1A1F16]">
-              카카오상담
+              네이버톡톡
             </span>
           </a>
 
