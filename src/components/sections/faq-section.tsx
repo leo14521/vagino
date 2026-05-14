@@ -3,60 +3,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus } from "lucide-react";
-
-// FAQ 데이터
-const FAQ_DATA = [
-  {
-    id: "01",
-    category: "수술 과정",
-    question: "수술 시간과 입원 여부가 궁금합니다.",
-    answer: "수술은 수면 마취 하에 약 1시간 내외로 진행됩니다. 수술 당일은 금식 후 입원하게 되며, 특별한 문제가 없는 경우 대부분 당일 퇴원이 가능합니다."
-  },
-  {
-    id: "02",
-    category: "통증 및 회복",
-    question: "많이 아픈가요? 일상은 언제부터 가능한가요?",
-    answer: "수술 당일부터 일상적인 활동은 가능합니다. 다만 2~3일간은 부기나 통증이 있을 수 있으며, 이는 처방해드리는 항생제와 소염제로 조절 가능합니다. 회복 기간은 약 6주 정도 소요됩니다."
-  },
-  {
-    id: "03",
-    category: "수술 효과",
-    question: "질성형 수술을 하면 구체적으로 어떤 점이 좋아지나요?",
-    answer: "단순히 질 입구만 좁히는 것이 아닙니다. 골반기저근을 복원하여 골반 장기 탈출증을 완화하고, 자궁과 방광을 제자리에 고정합니다. 성감 회복과 배변 기능 개선 효과도 기대할 수 있습니다."
-  },
-  {
-    id: "04",
-    category: "수술 후 관리",
-    question: "수술 후 분비물이 나오는데 정상인가요?",
-    answer: "네, 정상적인 회복 과정입니다. 수술 후 며칠에서 한 달 정도는 소량의 출혈이나 피 섞인 분비물이 나올 수 있습니다. 이후 몇 주간 나오는 분비물은 봉합사가 흡수되는 과정이니 안심하셔도 됩니다."
-  },
-  {
-    id: "05",
-    category: "주의사항",
-    question: "샤워나 운동, 성관계는 언제부터 가능한가요?",
-    answer: "가벼운 샤워는 가능하지만 탕 목욕은 6주간 피해주세요. 무거운 물건을 들거나 격렬한 운동, 그리고 성관계와 탐폰 사용은 수술 부위가 완전히 아물 때까지 6주 동안 피해주셔야 합니다."
-  }
-];
+import { WOMEN_FAQ_ENTRIES } from "@/data/faq-women";
 
 export function FAQSection() {
   const [activeIndex, setActiveIndex] = useState<number | null>(0);
 
   return (
     <section className="py-32 bg-[#F4F5F0] text-[#222A25] font-pretendard relative">
-      {/* 폰트 로드 */}
-      <style jsx global>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        .font-pretendard { font-family: 'Pretendard', sans-serif; }
-      `}</style>
-      
-      {/* 배경 노이즈 텍스처 (매트한 질감 추가) */}
       <div className="absolute inset-0 opacity-[0.4] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-24 max-w-6xl relative z-10">
         
         {/* Header */}
         <div className="mb-20 flex flex-col md:flex-row items-baseline justify-between border-b border-[#222A25]/20 pb-6">
-          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-[#222A25]">
+          <h2 className="text-4xl font-bold tracking-tighter leading-none text-[#222A25] md:text-6xl lg:text-8xl">
             FAQ
           </h2>
           <span className="text-lg md:text-xl font-medium text-[#5A6B5D] mb-2 md:mb-0">
@@ -66,7 +26,7 @@ export function FAQSection() {
 
         {/* FAQ List */}
         <div>
-          {FAQ_DATA.map((item, index) => {
+          {WOMEN_FAQ_ENTRIES.map((item, index) => {
             const isActive = activeIndex === index;
 
             return (

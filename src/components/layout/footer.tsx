@@ -1,6 +1,7 @@
 // src/components/layout/footer.tsx
 import Link from "next/link";
 import { Phone, Calendar } from "lucide-react";
+import { TrinityBrandLogo } from "@/components/brand/trinity-brand-logo";
 import { FooterLocationSection } from "@/components/layout/footer-location";
 
 export default function Footer() {
@@ -9,9 +10,9 @@ export default function Footer() {
       <footer className="bg-[#FDFCFB] text-[#5B6D4A] border-t border-[#E9E4DB]/60">
         {/* 문의/예약 CTA 섹션: Trinity Women's Clinic + 전화/네이버 예약 버튼 */}
         <div className="max-w-4xl mx-auto px-6 pt-16 lg:pt-20 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1A1F16] mb-12 serif tracking-tighter italic">
-            Trinity Women&apos;s Clinic
-          </h2>
+          <div className="mb-12 flex justify-center">
+            <TrinityBrandLogo className="h-12 max-w-[min(100%,280px)] md:h-14" />
+          </div>
           <div className="flex flex-col sm:flex-row justify-center gap-6">
             <a
               href="tel:02-512-8875"
@@ -55,23 +56,27 @@ export default function Footer() {
             {/* 로고: Trinity + 트리니티여성의원 한 줄, 간격 충분히 */}
             <div className="lg:justify-self-start flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
               <Link
-                href="/"
-                className="inline-flex items-baseline gap-3 hover:opacity-80 transition-opacity"
+                href="/women"
+                className="inline-flex shrink-0 items-center hover:opacity-90 transition-opacity"
+                aria-label="트리니티여성의원 질성형"
               >
-                <span className="serif text-2xl font-bold text-[#1A1F16] tracking-tight italic">
-                  Trinity
-                </span>
-                <span className="text-[#3E522D] font-semibold text-sm tracking-wide">
-                  트리니티여성의원
-                </span>
+                <TrinityBrandLogo className="h-10 max-w-[200px] sm:h-11" />
               </Link>
-              <nav className="flex gap-3 text-sm">
-                <Link href="/" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
-                  질성형수술
+              <nav className="flex flex-wrap gap-x-3 gap-y-1 text-sm">
+                <Link href="/women" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  질성형
                 </Link>
-                <span className="text-[#E9E4DB]">|</span>
-                <Link href="/sling" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
-                  요실금 미니슬링
+                <span className="text-[#E9E4DB]" aria-hidden>
+                  |
+                </span>
+                <Link href="/laser" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  질레이저
+                </Link>
+                <span className="text-[#E9E4DB]" aria-hidden>
+                  |
+                </span>
+                <Link href="/perineum" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  회음부관리
                 </Link>
               </nav>
             </div>

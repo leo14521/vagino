@@ -17,7 +17,7 @@ const NAV_ITEMS = [
   { id: "comparison", label: "수술 원리" },
   { id: "anatomy", label: "3D 복원" },
   { id: "pain-free", label: "통증 케어" },
-  { id: "laser-link", label: "레이저 옵션" },
+  { id: "laser-link", label: "질레이저" },
   { id: "brand-video", label: "브랜드 필름" },
   { id: "doctors", label: "의료진 소개" },
   { id: "review", label: "리얼 후기" },

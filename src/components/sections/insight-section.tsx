@@ -51,12 +51,6 @@ const SYMPTOMS_DATA = [
 export function InsightSection() {
   return (
     <div className="flex flex-col w-full font-pretendard">
-      <style jsx global>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        .font-pretendard { font-family: 'Pretendard', sans-serif; }
-      `}</style>
-
-      {/* Part 1: Storytelling (스크롤 애니메이션) */}
       <StorytellingPart />
 
       {/* Part 2: Interactive Symptom Check (자가진단 UX) */}

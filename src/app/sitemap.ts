@@ -1,16 +1,15 @@
-import { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://trinityrejuve.netlify.app'
+  const now = new Date();
 
-  return [
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 1,
-    },
-    // 필요하다면 땡큐 페이지 등 추가 페이지도 넣을 수 있지만, 
-    // 검색 노출이 필요 없는 페이지(완료 페이지 등)는 굳이 넣지 않습니다.
-  ]
+  const routes = ["/women", "/laser", "/perineum", "/sling"] as const;
+
+  return routes.map((path) => ({
+    url: `${SITE_URL}${path}`,
+    lastModified: now,
+    changeFrequency: path === "/women" ? ("daily" as const) : ("weekly" as const),
+    priority: path === "/women" ? 1 : path.startsWith("/perineum") ? 0.88 : 0.9,
+  }));
 }

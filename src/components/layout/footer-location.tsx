@@ -11,10 +11,7 @@ const GOOGLE_MAPS_DIRECTIONS =
 
 export function FooterLocationSection() {
   return (
-    <section
-      id="location"
-      className="py-24 lg:py-32 bg-white border-t border-[#E9E4DB]/50 scroll-mt-24"
-    >
+    <section className="py-24 lg:py-32 bg-white border-t border-[#E9E4DB]/50 scroll-mt-24">
       <style>{`
         @font-face {
           font-family: 'KoPubBatang';
@@ -112,7 +109,10 @@ export function FooterLocationSection() {
           </div>
         </div>
 
-        <div className="mt-10 lg:mt-14 rounded-[2rem] overflow-hidden border border-[#E9E4DB] shadow-sm bg-[#F8F6F3]">
+        <div
+          id="location"
+          className="mt-10 scroll-mt-28 lg:mt-14 rounded-[2rem] overflow-hidden border border-[#E9E4DB] shadow-sm bg-[#F8F6F3]"
+        >
           <iframe
             src={GOOGLE_MAPS_EMBED}
             width="100%"

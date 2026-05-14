@@ -17,13 +17,11 @@ export default function ThankYouPage() {
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#C5A065]/10 rounded-full blur-3xl pointer-events-none"></div>
 
       <style jsx global>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         @font-face {
             font-family: 'KoPubBatang';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KoPubBatangMedium.woff') format('woff');
             font-weight: normal; font-style: normal;
         }
-        .font-pretendard { font-family: 'Pretendard', sans-serif; }
         .font-kopub { font-family: 'KoPubBatang', serif; }
       `}</style>
 
@@ -71,7 +69,7 @@ export default function ThankYouPage() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Link href="/" className="w-full">
+          <Link href="/women" className="w-full">
             <Button 
               className="w-full h-14 rounded-xl bg-[#3E522D] hover:bg-[#2D3B1A] text-white text-lg font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
             >

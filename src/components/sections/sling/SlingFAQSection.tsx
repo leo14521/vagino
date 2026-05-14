@@ -43,10 +43,6 @@ export function SlingFAQSection() {
 
   return (
     <section className="py-32 bg-[#F4F5F0] text-[#222A25] font-pretendard relative">
-      <style jsx global>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        .font-pretendard { font-family: 'Pretendard', sans-serif; }
-      `}</style>
       <div className="absolute inset-0 opacity-[0.4] bg-[url('https://grainy-gradients.vercel.app/noise.svg')] mix-blend-multiply pointer-events-none" />
 
       <div className="container mx-auto px-6 md:px-12 lg:px-24 max-w-6xl relative z-10">
@@ -59,7 +55,7 @@ export function SlingFAQSection() {
           />
         </div>
         <div className="mb-20 flex flex-col md:flex-row items-baseline justify-between border-b border-[#222A25]/20 pb-6">
-          <h2 className="text-6xl md:text-8xl font-bold tracking-tighter leading-none text-[#222A25]">
+          <h2 className="text-4xl font-bold tracking-tighter leading-none text-[#222A25] md:text-6xl lg:text-8xl">
             FAQ
           </h2>
           <span className="text-lg md:text-xl font-medium text-[#5A6B5D] mb-2 md:mb-0">

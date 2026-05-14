@@ -151,10 +151,6 @@ function InteractiveCheckPart() {
 
   return (
     <section className="py-24 md:py-32 bg-[#F9F9F9] relative z-20 overflow-hidden">
-      <style jsx global>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
-        .font-pretendard { font-family: 'Pretendard', sans-serif; }
-      `}</style>
       <div className="container mx-auto px-6 max-w-7xl">
         <div className="text-center mb-16 md:mb-20">
           <span className="text-[#3E522D] font-bold tracking-[0.2em] text-sm uppercase mb-4 block">Medical Self-Check</span>

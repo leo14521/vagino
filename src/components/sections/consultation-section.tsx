@@ -62,7 +62,6 @@ export function ConsultationSection() {
       className="py-24 lg:py-32 bg-[#2E3A30] font-pretendard flex items-center justify-center">
       {/* 폰트 설정 */}
       <style>{`
-        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
         @font-face {
             font-family: 'GmarketSansBold';
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
@@ -73,7 +72,6 @@ export function ConsultationSection() {
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KoPubBatangMedium.woff') format('woff');
             font-weight: normal; font-style: normal;
         }
-        .font-pretendard { font-family: 'Pretendard', sans-serif; }
         .font-gmarket-bold { font-family: 'GmarketSansBold', sans-serif; }
         .font-kopub { font-family: 'KoPubBatang', serif; }
       `}</style>

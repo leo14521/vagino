@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/gh/fonts-archive/Paperlogy/Paperlogy.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -49,6 +51,7 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Paperlogy", system-ui, sans-serif;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
   
@@ -75,8 +78,22 @@
 }
 
 @layer utilities {
+  /* 가로 스크롤바 숨김 (모바일 헤더·칩 네비용) */
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* 레거시 클래스명 유지: 본문과 동일하게 Paperlogy */
+  .font-pretendard {
+    font-family: "Paperlogy", system-ui, sans-serif;
   }
   
   /* 텍스트 강조 밑줄 효과 */

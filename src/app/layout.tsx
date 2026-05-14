@@ -1,28 +1,60 @@
 import type { Metadata } from "next";
-// import localFont from "next/font/local"; // 사용하지 않는다면 주석 처리
-import { Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-// import { Header } from "@/components/layout/header"; // 헤더가 필요 없다면 주석 처리
-import { cn } from "@/lib/utils";
 import Script from "next/script"; // [필수] Script 컴포넌트 추가
 
-// 1. 새로 만든 컴포넌트 임포트
-import Footer from "@/components/layout/footer"; 
+import Footer from "@/components/layout/footer";
 import FloatingBanner from "@/components/layout/floating-banner";
+import { GlobalChrome } from "@/components/layout/global-chrome";
+import { ClinicOrganizationJsonLd } from "@/components/seo/json-ld";
+import { SITE_NAME, SITE_URL } from "@/lib/site";
 
-// 폰트 설정 (기존 설정 유지)
-const notoSerif = Noto_Serif_KR({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  display: "swap",
-  variable: "--font-noto-serif",
-});
-
-// 2. 메타데이터 업데이트 (기존 내용 유지)
 export const metadata: Metadata = {
-  title: "질성형수술 | 건강한 탄력복원을 중심으로",
-  description: "이쁜이수술도 역시 트리니티 여성의원",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: `${SITE_NAME} | 질성형·질레이저·회음부관리`,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description:
+    "트리니티여성의원 질성형, 질레이저(질쎄라·모나리자·리비브), 회음부관리(대음순수술·제모·미백) 안내. 강남 도산대로.",
+  keywords: [
+    SITE_NAME,
+    "질성형",
+    "질성형수술",
+    "질레이저",
+    "질쎄라",
+    "모나리자",
+    "리비브",
+    "회음부관리",
+    "대음순수술",
+    "회음부 제모",
+    "회음부 미백",
+    "여성의원",
+    "강남",
+  ],
+  openGraph: {
+    type: "website",
+    locale: "ko_KR",
+    url: SITE_URL,
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} | 질성형·질레이저·회음부관리`,
+    description:
+      "질성형 수술, 질 레이저, 회음부 대음순·제모·미백 클리닉 안내. 상담·예약.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "YNzZSPJkQ4t7maISPeY3S24_D2KHiB1_EYlIfMSpPbs",
+  },
+  category: "health",
 };
 
 // [설정] 태그 ID 상수 (관리하기 편하도록 분리)
@@ -37,6 +69,7 @@ export default function RootLayout({
   return (
     <html lang="ko" className="scroll-smooth">
       <head>
+        <ClinicOrganizationJsonLd />
         {/* 필요한 head 태그 내용이 있다면 여기에 유지 */}
 
         {/* 1. GA4 (Google Analytics) Script */}
@@ -64,14 +97,8 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      
-      <body
-        className={cn(
-          "min-h-screen bg-background font-sans antialiased selection:bg-[#3E522D] selection:text-white",
-          notoSerif.variable
-        )}
-        style={{ fontFamily: '"Pretendard Variable", Pretendard, sans-serif' }}
-      >
+
+      <body className="min-h-screen bg-background font-sans antialiased selection:bg-[#3E522D] selection:text-white">
         {/* 3. GTM Body (noscript) - body 태그 바로 아래 */}
         <noscript>
           <iframe
@@ -83,23 +110,16 @@ export default function RootLayout({
         </noscript>
 
         <SmoothScrollProvider>
-          
-          {/* 메인 콘텐츠 영역 */}
-          {/* 기존 clip-path 등의 설정 유지 */}
-          <main className="relative flex flex-col w-full min-h-screen">
-            {children}
-          </main>
+          <GlobalChrome>
+            <main className="relative flex w-full min-h-screen min-w-0 flex-col overflow-x-clip">{children}</main>
+          </GlobalChrome>
 
-          {/* 3. 푸터 추가 */}
-          {/* 푸터는 페이지 흐름의 맨 마지막에 위치하므로 ScrollProvider 안, main 뒤에 둡니다. */}
           <Footer />
-
         </SmoothScrollProvider>
 
         {/* 4. 플로팅 배너 추가 */}
         {/* 플로팅 요소(fixed)는 스크롤/transform의 영향을 받지 않도록 Provider 밖에 두는 것이 안전합니다. */}
         <FloatingBanner />
-        <meta name="google-site-verification" content="YNzZSPJkQ4t7maISPeY3S24_D2KHiB1_EYlIfMSpPbs" />
       </body>
     </html>
   );
