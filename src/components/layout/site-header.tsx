@@ -1,11 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { createPortal } from "react-dom";
-import { useCallback, useEffect, useId, useState } from "react";
+import { useCallback, useEffect, useId, useMemo, useState } from "react";
 import { ExternalLink, Menu, Phone, X } from "lucide-react";
 import { TrinityBrandLogo } from "@/components/brand/trinity-brand-logo";
+import { PERINEUM_ROUTES } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const TRINITY_OFFICIAL = "https://www.trinityclinic.co.kr/";
@@ -13,13 +14,21 @@ const TRINITY_RFA = "https://trinityrfa.netlify.app/";
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
   const menuId = useId();
 
   const isVaginal = pathname === "/women" || pathname === "/";
   const isLaser = pathname === "/laser";
-  const isPerineum = pathname.startsWith("/perineum");
+  const perineumTab = useMemo(() => {
+    if (!pathname.startsWith("/perineum")) return null;
+    const raw = searchParams.get("tab");
+    if (raw === "minora" || raw === "laser" || raw === "whiten") return raw;
+    return "labia";
+  }, [pathname, searchParams]);
+  const isLabia = perineumTab === "labia";
+  const isMinora = perineumTab === "minora";
 
   const closeMobile = useCallback(() => setMobileOpen(false), []);
 
@@ -103,8 +112,11 @@ export function SiteHeader() {
             <Link href="/laser" className={mobileNavRow(isLaser)} onClick={closeMobile}>
               질레이저
             </Link>
-            <Link href="/perineum" className={mobileNavRow(isPerineum)} onClick={closeMobile}>
+            <Link href={PERINEUM_ROUTES.labia} className={mobileNavRow(isLabia)} onClick={closeMobile}>
               대음순수술
+            </Link>
+            <Link href={PERINEUM_ROUTES.minora} className={mobileNavRow(isMinora)} onClick={closeMobile}>
+              소음순수술
             </Link>
             <p className="mt-4 px-1 text-[10px] font-bold uppercase tracking-[0.2em] text-[#A1A89A]">
               관련 링크
@@ -159,8 +171,11 @@ export function SiteHeader() {
             <Link href="/laser" className={navPill(isLaser)}>
               질레이저
             </Link>
-            <Link href="/perineum" className={navPill(isPerineum)}>
+            <Link href={PERINEUM_ROUTES.labia} className={navPill(isLabia)}>
               대음순수술
+            </Link>
+            <Link href={PERINEUM_ROUTES.minora} className={navPill(isMinora)}>
+              소음순수술
             </Link>
 
             <span className="mx-0.5 hidden h-4 w-px shrink-0 bg-[#E9E4DB] md:inline" aria-hidden />

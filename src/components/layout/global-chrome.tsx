@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -14,7 +15,9 @@ export function GlobalChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-[100] shadow-sm">
-        <SiteHeader />
+        <Suspense fallback={null}>
+          <SiteHeader />
+        </Suspense>
         {showSectionGuide && <SectionGuideNav />}
       </div>
       <div

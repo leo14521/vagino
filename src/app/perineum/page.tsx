@@ -9,10 +9,13 @@ const canonical = `${SITE_URL}${PERINEUM_ROUTES.hub}`;
 export const metadata: Metadata = {
   title: "회음부관리",
   description:
-    "대음순수술(확대·축소), 회음부 제모, 회음부 미백까지. 트리니티여성의원 회음부 심미·위생 클리닉 안내.",
+    "대음순수술(확대·축소), 소음순수술(모양·미백·음핵), 회음부 제모, 회음부 미백까지. 트리니티여성의원 회음부 심미·위생 클리닉 안내.",
   keywords: [
     "회음부관리",
     "대음순수술",
+    "소음순수술",
+    "소음순성형",
+    "음핵성형",
     "대음순 확대",
     "대음순 축소",
     "회음부 제모",
@@ -46,7 +49,7 @@ export default function PerineumPage() {
       <WebPageJsonLd
         path={PERINEUM_ROUTES.hub}
         name="회음부관리"
-        description="대음순수술, 회음부 제모, 회음부 미백 등 트리니티여성의원 회음부 심미·위생 클리닉 안내."
+        description="대음순수술, 소음순수술, 회음부 제모, 회음부 미백 등 트리니티여성의원 회음부 심미·위생 클리닉 안내."
       />
       <div className="relative flex min-h-screen flex-col bg-[#FDFBF7]">
         <header className="mx-auto max-w-3xl px-4 pb-4 pt-10 text-center md:pt-14">
@@ -55,11 +58,11 @@ export default function PerineumPage() {
             회음부관리
           </h1>
           <p className="mt-4 text-base leading-relaxed text-[#5C5C5C] break-keep">
-            대음순 형태 교정, 회음부 제모, 회음부 미백을{" "}
+            대음순·소음순 형태 교정, 회음부 제모, 회음부 미백을{" "}
             <strong className="text-[#1A1F16]">아래 탭에서 바로</strong> 확인하실 수 있습니다. 공식
             자료는{" "}
             <a
-              href="https://www.trinityclinic.co.kr/sub/menu3-3"
+              href="https://www.trinityclinic.co.kr/sub/menu3-2"
               target="_blank"
               rel="noopener noreferrer"
               className="font-semibold text-[#3E522D] underline underline-offset-2 hover:text-[#2D3B1A]"

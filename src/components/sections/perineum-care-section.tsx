@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { PerineumMinoraTab } from "@/components/sections/perineum-minora-tab";
 import { PERINEUM_ROUTES } from "@/lib/site";
 
 const TC = (id: string) =>
@@ -28,7 +29,8 @@ function TcImg({ id, alt }: { id: string; alt: string }) {
 }
 
 const TABS = [
-  { id: "labia" as const, label: "대음순 수술", href: PERINEUM_ROUTES.labia },
+  { id: "labia" as const, label: "대음순수술", href: PERINEUM_ROUTES.labia },
+  { id: "minora" as const, label: "소음순수술", href: PERINEUM_ROUTES.minora },
   { id: "laser" as const, label: "회음부 제모", href: PERINEUM_ROUTES.hairRemoval },
   { id: "whiten" as const, label: "회음부 미백", href: PERINEUM_ROUTES.whitening },
 ];
@@ -39,7 +41,7 @@ type SearchParamsLike = Pick<URLSearchParams, "get">;
 
 function tabFromSearchParams(sp: SearchParamsLike): TabId {
   const raw = sp.get("tab");
-  if (raw === "labia" || raw === "laser" || raw === "whiten") return raw;
+  if (raw === "labia" || raw === "minora" || raw === "laser" || raw === "whiten") return raw;
   if (raw === "hair-removal") return "laser";
   return "labia";
 }
@@ -320,6 +322,8 @@ export function PerineumCareSection() {
                 </div>
               </>
             )}
+
+            {tab === "minora" && <PerineumMinoraTab />}
 
             {tab === "laser" && (
               <>

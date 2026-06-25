@@ -17,6 +17,7 @@ export const CLINIC = {
 export const PERINEUM_ROUTES = {
   hub: "/perineum",
   labia: "/perineum?tab=labia",
+  minora: "/perineum?tab=minora",
   hairRemoval: "/perineum?tab=laser",
   whitening: "/perineum?tab=whiten",
 } as const;
