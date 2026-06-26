@@ -12,16 +12,6 @@ const GOOGLE_MAPS_DIRECTIONS =
 export function FooterLocationSection() {
   return (
     <section className="py-24 lg:py-32 bg-white border-t border-[#E9E4DB]/50 scroll-mt-24">
-      <style>{`
-        @font-face {
-          font-family: 'KoPubBatang';
-          src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KoPubBatangMedium.woff') format('woff');
-          font-weight: normal;
-          font-style: normal;
-        }
-        .font-kopub { font-family: 'KoPubBatang', serif; }
-      `}</style>
-
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <span className="text-[#3E522D] font-bold tracking-[0.3em] text-[11px] uppercase mb-4 block">

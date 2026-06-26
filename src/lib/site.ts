@@ -6,6 +6,12 @@ export const SITE_NAME = "트리니티여성의원";
 /** `public/images/icon.png` — 브랜드 로고 */
 export const TRINITY_BRAND_LOGO_PATH = "/images/icon.png" as const;
 
+/** 여성성형 브랜드 필름 — 히어로·브랜드 섹션 공용 */
+export const BRAND_FILM_VIDEO_SRC = "/videos/brand-film_opt.mp4" as const;
+
+/** 히어로 배경: 5~8초 구간만 약 3초 루프 */
+export const HERO_BRAND_FILM_LOOP = { start: 5, end: 8 } as const;
+
 export const CLINIC = {
   legalName: SITE_NAME,
   streetAddress: "서울시 강남구 도산대로 108 렉스타워 3층",

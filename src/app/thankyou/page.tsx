@@ -16,15 +16,6 @@ export default function ThankYouPage() {
       <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-[#3E522D]/5 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-[#C5A065]/10 rounded-full blur-3xl pointer-events-none"></div>
 
-      <style jsx global>{`
-        @font-face {
-            font-family: 'KoPubBatang';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KoPubBatangMedium.woff') format('woff');
-            font-weight: normal; font-style: normal;
-        }
-        .font-kopub { font-family: 'KoPubBatang', serif; }
-      `}</style>
-
       {/* 메인 카드 */}
       <motion.div 
         initial={{ opacity: 0, y: 20 }}

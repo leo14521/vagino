@@ -27,7 +27,7 @@ export function LaserOptionTeaser() {
         </h2>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-relaxed text-[#5C5C5C] break-keep md:text-lg">
           시간과 비용이 부담되시나요? 트리니티는{" "}
-          <strong className="text-[#1A1F16]">비비브, 질쎄라</strong> 등 최상급 레이저 장비도 완비하고
+          <strong className="text-[#1A1F16]">리비브, 모나리자터치</strong> 등 최상급 레이저 장비도 완비하고
           있습니다.
           <br />
           부담 없는 질 타이트닝 효과를 경험해 보세요.

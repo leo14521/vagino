@@ -58,6 +58,7 @@ const config: Config = {
       fontFamily: {
         sans: ["Pretendard JP", "Pretendard", "system-ui", "sans-serif"],
         serif: ["Pretendard JP", "Pretendard", "system-ui", "sans-serif"],
+        kopub: ["Pretendard JP", "Pretendard", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

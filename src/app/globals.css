@@ -8,6 +8,8 @@
   :root {
     --background: 0 0% 100%;
     --foreground: 120 10% 10%;
+    --font-sans: "Pretendard JP", "Pretendard", system-ui, sans-serif;
+    --font-display: "Pretendard JP", "Pretendard", system-ui, sans-serif;
     
     --card: 0 0% 100%;
     --card-foreground: 120 10% 10%;
@@ -51,8 +53,17 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: "Pretendard JP", "Pretendard", system-ui, sans-serif;
+    font-family: var(--font-sans);
     font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-sans);
   }
   
   /* 부드러운 스크롤을 위한 html 설정 */
@@ -92,7 +103,23 @@
   }
 
   .font-pretendard {
-    font-family: "Pretendard JP", "Pretendard", system-ui, sans-serif;
+    font-family: var(--font-sans);
+  }
+
+  .font-kopub,
+  .font-serif {
+    font-family: var(--font-sans);
+  }
+
+  .text-2xl,
+  .text-3xl,
+  .text-4xl,
+  .text-5xl,
+  .text-6xl,
+  .text-7xl,
+  .text-8xl,
+  .text-9xl {
+    font-family: var(--font-sans);
   }
   
   /* 텍스트 강조 밑줄 효과 */

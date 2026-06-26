@@ -67,13 +67,7 @@ export function ConsultationSection() {
             src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
             font-weight: bold; font-style: normal;
         }
-        @font-face {
-            font-family: 'KoPubBatang';
-            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KoPubBatangMedium.woff') format('woff');
-            font-weight: normal; font-style: normal;
-        }
         .font-gmarket-bold { font-family: 'GmarketSansBold', sans-serif; }
-        .font-kopub { font-family: 'KoPubBatang', serif; }
       `}</style>
 
       <div className="container mx-auto px-4 md:px-6 max-w-5xl">
