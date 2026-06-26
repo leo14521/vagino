@@ -57,9 +57,8 @@ export const metadata: Metadata = {
   category: "health",
 };
 
-// [설정] 태그 ID 상수 (관리하기 편하도록 분리)
+// Google Tag Manager — GA4는 GTM 컨테이너에서만 로드 (중복 방지)
 const GTM_ID = "GTM-K322C26Q";
-const GA_ID = "G-0JVRZ6K7P1";
 
 export default function RootLayout({
   children,
@@ -72,21 +71,7 @@ export default function RootLayout({
         <ClinicOrganizationJsonLd />
         {/* 필요한 head 태그 내용이 있다면 여기에 유지 */}
 
-        {/* 1. GA4 (Google Analytics) Script */}
-        <Script
-          src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_ID}');
-          `}
-        </Script>
-
-        {/* 2. GTM (Google Tag Manager) Script */}
+        {/* GTM (Google Tag Manager) — GA4는 GTM 내 태그로만 운영 */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -99,7 +84,7 @@ export default function RootLayout({
       </head>
 
       <body className="min-h-screen bg-background font-sans antialiased selection:bg-[#3E522D] selection:text-white">
-        {/* 3. GTM Body (noscript) - body 태그 바로 아래 */}
+        {/* GTM Body (noscript) — body 태그 바로 아래 */}
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
