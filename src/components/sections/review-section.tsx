@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+
 import { Star, Quote, MessageCircle, ArrowRight, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -75,15 +75,10 @@ export function ReviewSection() {
 
         {/* 후기 카드 그리드 */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-          {REAL_REVIEWS.map((review, index) => (
-            <motion.div
+          {REAL_REVIEWS.map((review) => (
+            <div
               key={review.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-2xl p-6 shadow-sm border border-[#E5E0D8] flex flex-col hover:shadow-xl hover:border-[#3E522D]/30 transition-all duration-300"
+              className="flex flex-col rounded-2xl border border-[#E5E0D8] bg-white p-6 shadow-sm transition-shadow hover:border-[#3E522D]/30 hover:shadow-xl"
             >
               {/* 헤더: 소스 정보 */}
               <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#F4EBE2]">
@@ -128,7 +123,7 @@ export function ReviewSection() {
                   <span className="text-[#3E522D]">{review.info}</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
         

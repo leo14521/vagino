@@ -56,8 +56,8 @@ const config: Config = {
         "5xl": "3.5rem",
       },
       fontFamily: {
-        sans: ["Paperlogy", "system-ui", "sans-serif"],
-        serif: ["Paperlogy", "Georgia", "serif"],
+        sans: ["Pretendard JP", "Pretendard", "system-ui", "sans-serif"],
+        serif: ["Pretendard JP", "Pretendard", "system-ui", "sans-serif"],
       },
       keyframes: {
         "accordion-down": {

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { LASER_ROUTES } from "@/lib/site";
 import { MonalisaPanel, RevivePanel, ZisellaPanel } from "@/components/sections/laser-link-section";
@@ -78,21 +77,11 @@ export function LaserCareSection() {
           })}
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.3 }}
-            role="tabpanel"
-            className="space-y-12 md:space-y-16"
-          >
+        <div key={tab} role="tabpanel" className="space-y-12 md:space-y-16">
             {tab === "zisella" && <ZisellaPanel />}
             {tab === "monalisa" && <MonalisaPanel />}
             {tab === "revive" && <RevivePanel />}
-          </motion.div>
-        </AnimatePresence>
+          </div>
       </div>
     </section>
   );

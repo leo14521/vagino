@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowDown, ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PerineumMinoraTab } from "@/components/sections/perineum-minora-tab";
@@ -161,7 +160,7 @@ export function PerineumCareSection() {
         </nav>
 
         <div
-          className="mb-10 flex flex-wrap justify-center gap-2"
+          className="mb-10 grid max-w-md grid-cols-2 gap-2 mx-auto md:mx-0 md:flex md:max-w-none md:flex-wrap md:justify-center"
           role="tablist"
           aria-label="회음부 케어 종류"
         >
@@ -176,7 +175,7 @@ export function PerineumCareSection() {
                 role="tab"
                 aria-selected={on}
                 className={cn(
-                  "rounded-full px-5 py-2.5 text-sm font-bold transition-all md:px-8 md:py-3 md:text-base",
+                  "rounded-full px-4 py-2.5 text-center text-[13px] font-bold transition-all md:px-8 md:py-3 md:text-base",
                   on
                     ? "bg-[#3E522D] text-white shadow-md"
                     : "border border-[#E9E4DB] bg-white text-[#6B7264] hover:border-[#3E522D]/35"
@@ -188,16 +187,7 @@ export function PerineumCareSection() {
           })}
         </div>
 
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={tab}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.3 }}
-            role="tabpanel"
-            className="space-y-12 md:space-y-16"
-          >
+        <div key={tab} role="tabpanel" className="space-y-12 md:space-y-16">
             {tab === "labia" && (
               <>
                 <div className="mx-auto max-w-3xl text-center">
@@ -550,8 +540,7 @@ export function PerineumCareSection() {
                 </div>
               </>
             )}
-          </motion.div>
-        </AnimatePresence>
+        </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-[11px] leading-relaxed text-[#A1A89A]">
           시술·수술은 개인 해부·피부 상태에 따라 달라질 수 있습니다. 본문의 이미지·설명은
