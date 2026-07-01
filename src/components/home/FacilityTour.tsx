@@ -11,6 +11,7 @@ const TOUR_STEPS = [
   {
     id: 1,
     title: "병원 입구",
+    imageAlt: "강남 트리니티여성의원 질축소수술·이쁜이수술 전문 여성의원 입구",
     desc: "트리니티에 오신 것을 환영합니다.\n들어오시는 순간부터 청결하고 쾌적한 환경을 약속드립니다.",
     label: "01. Entrance",
     // 👇 점(.)을 빼고 /images/... 로 수정했습니다.
@@ -20,6 +21,7 @@ const TOUR_STEPS = [
   {
     id: 2,
     title: "안내 데스크",
+    imageAlt: "강남 트리니티여성의원 질축소수술 예약·접수 안내 데스크",
     desc: "전문 코디네이터의 안내로 대기 시간을 최소화합니다.\n예약 확인부터 접수까지 빠르고 친절하게 도와드립니다.",
     label: "02. Reception",
     imgSrc: "/images/tour-desk.webp",
@@ -28,6 +30,7 @@ const TOUR_STEPS = [
   {
     id: 3,
     title: "전용 대기실",
+    imageAlt: "이쁜이수술 상담 전 이용하는 프라이빗 전용 대기실",
     desc: "진료를 기다리는 시간조차 휴식이 되도록,\n넓은 좌석과 따뜻한 조명으로 안락함을 더했습니다.",
     label: "03. Lounge",
     imgSrc: "/images/tour-lounge.webp",
@@ -36,6 +39,7 @@ const TOUR_STEPS = [
   {
     id: 4,
     title: "심층 진료실",
+    imageAlt: "강남 트리니티여성의원 질축소수술 전용 상담실",
     desc: "단순한 문진을 넘어 환자의 삶을 이해하는 공간입니다.\n1:1 프라이빗 공간에서 깊이 있는 상담이 이루어집니다.",
     label: "04. Consulting Room",
     imgSrc: "/images/tour-consult.webp",
@@ -44,6 +48,7 @@ const TOUR_STEPS = [
   {
     id: 5,
     title: "정밀 초음파실",
+    imageAlt: "질축소수술 전 골반기저근·질벽 상태를 확인하는 정밀 초음파실",
     desc: "대학병원급 하이엔드 장비로 병변을 입체적으로 분석합니다.\n모니터를 함께 보며 현재 상태를 명확히 설명해 드립니다.",
     label: "05. Ultra-Sound",
     imgSrc: "/images/tour-ultra.webp",
@@ -52,6 +57,7 @@ const TOUR_STEPS = [
   {
     id: 6,
     title: "VIP 회복실",
+    imageAlt: "이쁜이수술 1:1 프라이빗 VIP 회복실",
     desc: "시술 후 호텔급 침구에서 편안하게 휴식을 취하세요.\n전담 간호사가 퇴원 시까지 세심하게 케어합니다.",
     label: "06. Recovery Room",
     imgSrc: "/images/tour-recovery.webp",
@@ -95,7 +101,7 @@ export function FacilityTour() {
                   {/* 이미지 필터 스타일 적용 */}
                   <img
                     src={step.imgSrc}
-                    alt={step.title}
+                    alt={step.imageAlt}
                     className="w-full h-full object-cover brightness-[1.03] contrast-[1.05] saturate-[0.85] sepia-[0.15]"
                     onError={(e) => (e.currentTarget.src = step.fallbackSrc)}
                   />
@@ -172,7 +178,7 @@ function TourStepItem({
       <div className="lg:hidden mb-6 rounded-[1.5rem] overflow-hidden shadow-lg aspect-[4/3]">
         <img
           src={step.imgSrc}
-          alt={step.title}
+          alt={step.imageAlt}
           className="w-full h-full object-cover brightness-[1.03] contrast-[1.05] saturate-[0.85] sepia-[0.15]"
           onError={(e) => (e.currentTarget.src = step.fallbackSrc)}
         />

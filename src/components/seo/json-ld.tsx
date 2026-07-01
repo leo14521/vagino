@@ -70,6 +70,38 @@ export function WebPageJsonLd({
   );
 }
 
+export function MedicalProcedureJsonLd({
+  path,
+  name,
+  procedureType,
+  description,
+}: {
+  path: string;
+  name: string;
+  procedureType: string;
+  description: string;
+}) {
+  const url = `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    "@id": `${url}#procedure`,
+    name,
+    procedureType,
+    description,
+    url,
+    provider: { "@id": ORG_ID },
+    inLanguage: "ko-KR",
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}
+
 export function FaqPageJsonLd({ entries }: { entries: FaqEntry[] }) {
   const data = {
     "@context": "https://schema.org",

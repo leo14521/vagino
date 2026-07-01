@@ -132,14 +132,17 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.06, ease }}
             className="mt-6 sm:mt-7 lg:mt-8 [text-shadow:0_2px_28px_rgba(0,0,0,0.55)]"
           >
-            <span className="block text-[clamp(1.75rem,5.8vw,2.65rem)] font-extrabold leading-[1.18] tracking-[-0.04em] text-white sm:leading-[1.14] lg:text-[clamp(2.25rem,3.8vw,3.35rem)] break-keep">
-              여성의 몸을,
-            </span>
-            <span className="mt-1 block text-[clamp(1.85rem,6.2vw,2.85rem)] font-extrabold leading-[1.16] tracking-[-0.04em] sm:mt-1.5 lg:text-[clamp(2.35rem,4.2vw,3.55rem)] break-keep">
-              <span className="text-gradient-gold">여성의 관점에서</span>
-            </span>
-            <span className="mt-1 block text-[clamp(1.75rem,5.8vw,2.65rem)] font-extrabold leading-[1.18] tracking-[-0.04em] text-white sm:mt-1.5 lg:text-[clamp(2.25rem,3.8vw,3.35rem)] break-keep">
-              설계합니다.
+            <span className="sr-only">강남 트리니티여성의원 질축소수술 (이쁜이수술)</span>
+            <span aria-hidden="true">
+              <span className="block text-[clamp(1.75rem,5.8vw,2.65rem)] font-extrabold leading-[1.18] tracking-[-0.04em] text-white sm:leading-[1.14] lg:text-[clamp(2.25rem,3.8vw,3.35rem)] break-keep">
+                여성의 몸을,
+              </span>
+              <span className="mt-1 block text-[clamp(1.85rem,6.2vw,2.85rem)] font-extrabold leading-[1.16] tracking-[-0.04em] sm:mt-1.5 lg:text-[clamp(2.35rem,4.2vw,3.55rem)] break-keep">
+                <span className="text-gradient-gold">여성의 관점에서</span>
+              </span>
+              <span className="mt-1 block text-[clamp(1.75rem,5.8vw,2.65rem)] font-extrabold leading-[1.18] tracking-[-0.04em] text-white sm:mt-1.5 lg:text-[clamp(2.25rem,3.8vw,3.35rem)] break-keep">
+                설계합니다.
+              </span>
             </span>
           </motion.h1>
 

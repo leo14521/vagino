@@ -53,6 +53,9 @@ export const metadata: Metadata = {
   },
   verification: {
     google: "YNzZSPJkQ4t7maISPeY3S24_D2KHiB1_EYlIfMSpPbs",
+    other: {
+      "naver-site-verification": "aaa839cd2797ad3b9d992bc1edeeb3010f6b98b1",
+    },
   },
   category: "health",
 };

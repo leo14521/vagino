@@ -8,6 +8,7 @@ import { BrandVideoSection } from "@/components/sections/brand-video-section";
 import { AuthoritySection } from "@/components/sections/authority-section";
 import { ReviewSection } from "@/components/sections/review-section";
 import { FAQSection } from "@/components/sections/faq-section";
+import { WomenAeoSection } from "@/components/women/women-aeo-section";
 import { FacilityTour } from "@/components/home/FacilityTour";
 import { ConsultationSection } from "@/components/sections/consultation-section";
 
@@ -43,6 +44,7 @@ export function WomenSurgerySections() {
       <div id="faq" className="scroll-mt-28">
         <FAQSection />
       </div>
+      <WomenAeoSection />
       <FacilityTour />
       <div id="consultation" className="scroll-mt-28">
         <ConsultationSection />

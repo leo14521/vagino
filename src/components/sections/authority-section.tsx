@@ -7,6 +7,7 @@ const DOCTORS = [
   {
     id: "jung",
     name: "Dr. 정난희",
+    imageAlt: "강남 트리니티여성의원 질축소수술·이쁜이수술 전문의 Dr. 정난희",
     role: "REPRESENTATIVE DIRECTOR",
     // [Dr. Jung] 고려대 의학박사 + 국제 학회 교수 + 하이푸/RFA 마스터 + 방송 자문
     tags: ["UNIVERSITY PROFESSOR", "GLOBAL KEY DOCTOR", "의학박사"],
@@ -24,6 +25,7 @@ const DOCTORS = [
   {
     id: "yang",
     name: "Dr. 양기열",
+    imageAlt: "강남 트리니티여성의원 질축소수술·이쁜이수술 전문의 Dr. 양기열",
     role: "REPRESENTATIVE DIRECTOR",
     // [Dr. Yang] 경희대 의학박사 + 갱년기/자궁근종 저자 + 방송 자문 + 로컬 수술 경험
     tags: ["AESTHETIC SPECIALIST", "BEST SELLING AUTHOR", "의학박사"],
@@ -75,7 +77,7 @@ export function AuthoritySection() {
                   {/* 실제 이미지 컴포넌트 */}
                   <Image 
                     src={doctor.imageSrc}
-                    alt={doctor.name}
+                    alt={doctor.imageAlt}
                     fill
                     className="object-cover object-top group-hover:scale-105 transition-transform duration-700 opacity-90"
                     priority
