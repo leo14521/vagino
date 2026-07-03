@@ -60,7 +60,7 @@ export default function ThankYouPage() {
         </div>
 
         <div className="flex flex-col gap-3">
-          <Link href="/women" className="w-full">
+          <Link href="/" className="w-full">
             <Button 
               className="w-full h-14 rounded-xl bg-[#3E522D] hover:bg-[#2D3B1A] text-white text-lg font-bold shadow-lg transition-all duration-300 flex items-center justify-center gap-2"
             >

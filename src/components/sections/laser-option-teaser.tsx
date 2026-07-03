@@ -4,7 +4,7 @@ import Link from "next/link";
 import { LASER_ROUTES } from "@/lib/site";
 
 const OPTIONS = [
-  { href: "/women#consultation", label: "질필러" },
+  { href: "/#consultation", label: "질필러" },
   { href: LASER_ROUTES.revive, label: "비비브" },
   { href: LASER_ROUTES.monalisa, label: "모나리자터치" },
   { href: LASER_ROUTES.revive, label: "리비브" },

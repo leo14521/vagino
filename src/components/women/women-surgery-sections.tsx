@@ -12,7 +12,7 @@ import { WomenAeoSection } from "@/components/women/women-aeo-section";
 import { FacilityTour } from "@/components/home/FacilityTour";
 import { ConsultationSection } from "@/components/sections/consultation-section";
 
-/** 질성형 랜딩 `/women` — [https://trinityrejuve.netlify.app/](https://trinityrejuve.netlify.app/) 섹션 순서 복원 */
+/** 질성형 메인 랜딩 `/` */
 export function WomenSurgerySections() {
   return (
     <>

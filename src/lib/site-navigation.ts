@@ -52,7 +52,7 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
     id: "women-surgery",
     label: "여성성형센터",
     items: [
-      { label: "질성형", href: "/women" },
+      { label: "질성형", href: "/" },
       { label: "질레이저", href: LASER_ROUTES.hub },
       { label: "대음순수술", href: PERINEUM_ROUTES.labia },
       { label: "소음순수술", href: PERINEUM_ROUTES.minora },
@@ -97,7 +97,7 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
 
 /** 헤더에 항상 노출하는 여성성형센터 바로가기 */
 export const WOMEN_SURGERY_QUICK_LINKS = [
-  { label: "질성형", href: "/women", match: "women" as const },
+  { label: "질성형", href: "/", match: "women" as const },
   { label: "질레이저", href: LASER_ROUTES.hub, match: "laser" as const },
   { label: "대음순수술", href: PERINEUM_ROUTES.labia, match: "labia" as const },
   { label: "소음순수술", href: PERINEUM_ROUTES.minora, match: "minora" as const },

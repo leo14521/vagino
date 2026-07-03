@@ -914,7 +914,7 @@ export function LaserPageFooter() {
           <p className="text-center text-sm text-[#6B7264] sm:text-left">
             맞춤 시술 가능 여부는 원장 진단 후 결정됩니다.
           </p>
-          <a href="/women#consultation">
+          <a href="/#consultation">
             <Button
               variant="outline"
               className="group rounded-full border-[#3E522D] px-8 py-6 text-base text-[#3E522D] transition-all hover:bg-[#3E522D] hover:text-white"

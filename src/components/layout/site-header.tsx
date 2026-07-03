@@ -109,7 +109,7 @@ export function SiteHeader() {
   }, [mobileOpen, closeMobile]);
 
   const isLinkActive = (item: NavLink) => {
-    if (item.href === "/women" && activeWomen === "women") return true;
+    if (item.href === "/" && activeWomen === "women") return true;
     if (item.href === "/laser" && activeWomen === "laser") return true;
     if (item.href.includes("tab=labia") && activeWomen === "labia") return true;
     if (item.href.includes("tab=minora") && activeWomen === "minora") return true;
@@ -128,7 +128,7 @@ export function SiteHeader() {
           className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col bg-white shadow-[-8px_0_24px_rgba(0,0,0,0.08)]"
         >
           <div className="flex items-center justify-between border-b border-[#EEEEEE] px-4 py-3">
-            <Link href="/women" onClick={closeMobile} className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
+            <Link href="/" onClick={closeMobile} className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
               <TrinityBrandLogo className="h-8 max-w-[100px]" />
               <span className="site-header__brand-name">{CLINIC_DISPLAY_NAME}</span>
             </Link>
@@ -182,7 +182,7 @@ export function SiteHeader() {
     <>
       <header ref={headerRef} className="site-header">
         <div className="site-header__inner">
-          <Link href="/women" className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
+          <Link href="/" className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
             <TrinityBrandLogo priority className="h-8 max-w-[100px] sm:h-9 sm:max-w-[120px] lg:h-10 lg:max-w-[140px]" />
             <span className="site-header__brand-name">{CLINIC_DISPLAY_NAME}</span>
           </Link>

@@ -56,14 +56,14 @@ export default function Footer() {
             {/* 로고: Trinity + 트리니티여성의원 한 줄, 간격 충분히 */}
             <div className="lg:justify-self-start flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
               <Link
-                href="/women"
+                href="/"
                 className="inline-flex shrink-0 items-center hover:opacity-90 transition-opacity"
                 aria-label="트리니티여성의원 질성형"
               >
                 <TrinityBrandLogo className="h-10 max-w-[200px] sm:h-11" />
               </Link>
               <nav className="flex flex-wrap gap-x-3 gap-y-1 text-sm">
-                <Link href="/women" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                <Link href="/" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
                   질성형
                 </Link>
                 <span className="text-[#E9E4DB]" aria-hidden>
