@@ -19,9 +19,9 @@ export const CLINIC = {
   telephoneDisplay: "02-512-8875",
 } as const;
 
-/** 네이버 예약 — 플레이스 테마(리퍼러 유입 통계용, noreferrer 미사용) */
+/** 네이버 플레이스·예약 — 리퍼러 유입 통계용 (rel="noopener"만 사용) */
 export const NAVER_BOOKING_URL =
-  "https://booking.naver.com/booking/13/bizes/318986?theme=place" as const;
+  "https://map.naver.com/p/entry/place/1714131744" as const;
 
 /** 회음부 — 단일 페이지 `/perineum` + 쿼리(북마크·공유용). 구 경로는 리다이렉트 */
 export const PERINEUM_ROUTES = {
