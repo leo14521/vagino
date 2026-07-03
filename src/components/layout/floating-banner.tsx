@@ -2,6 +2,7 @@
 "use client";
 
 import { Phone, MousePointer2, CalendarCheck, MessageCircle } from "lucide-react";
+import { NAVER_BOOKING_URL } from "@/lib/site";
 
 export default function FloatingBanner() {
   return (
@@ -10,7 +11,7 @@ export default function FloatingBanner() {
       <div className="hidden lg:flex fixed bottom-10 right-10 z-[9999] flex-col gap-3 font-pretendard">
         {/* 네이버 예약 */}
         <a
-          href="https://booking.naver.com/booking/13/bizes/318986"
+          href={NAVER_BOOKING_URL}
           target="_blank"
           rel="noopener"
           className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#03C75A]/20 rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
@@ -70,7 +71,7 @@ export default function FloatingBanner() {
         <div className="grid grid-cols-4 h-[60px]">
           {/* 네이버 */}
           <a
-            href="https://booking.naver.com/booking/13/bizes/318986"
+            href={NAVER_BOOKING_URL}
             target="_blank"
             rel="noopener"
             className="flex flex-col items-center justify-center gap-1 active:bg-gray-50 border-r border-[#E9E4DB]/50"

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Phone, Calendar } from "lucide-react";
 import { TrinityBrandLogo } from "@/components/brand/trinity-brand-logo";
 import { FooterLocationSection } from "@/components/layout/footer-location";
+import { NAVER_BOOKING_URL } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -29,7 +30,7 @@ export default function Footer() {
               </span>
             </a>
             <a
-              href="https://booking.naver.com/booking/13/bizes/318986"
+              href={NAVER_BOOKING_URL}
               target="_blank"
               rel="noopener"
               className="group flex-1 bg-white border border-[#E9E4DB] hover:border-[#3E522D] text-[#3A4035] py-5 px-8 rounded-[2.5rem] transition-all flex flex-col items-center gap-1 shadow-sm hover:shadow-md"
