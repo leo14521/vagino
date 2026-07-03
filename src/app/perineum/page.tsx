@@ -64,7 +64,7 @@ export default function PerineumPage() {
             <a
               href="https://www.trinityclinic.co.kr/sub/menu3-2"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="font-semibold text-[#3E522D] underline underline-offset-2 hover:text-[#2D3B1A]"
             >
               트리니티 클리닉

@@ -12,7 +12,7 @@ export default function FloatingBanner() {
         <a
           href="https://booking.naver.com/booking/13/bizes/318986"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#03C75A]/20 rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
         >
           <span className="flex-1 text-sm font-bold text-[#1A1F16]">
@@ -27,7 +27,7 @@ export default function FloatingBanner() {
         <a
           href="https://talk.naver.com/profile/w4tsxu"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#03C75A]/20 rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
         >
           <span className="flex-1 text-sm font-bold text-[#1A1F16]">
@@ -42,7 +42,7 @@ export default function FloatingBanner() {
         <a
           href="https://www.trinityclinic.co.kr/board/reservation/write"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener"
           className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#E9E4DB] rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
         >
           <span className="flex-1 text-sm font-bold text-[#1A1F16]">
@@ -72,7 +72,7 @@ export default function FloatingBanner() {
           <a
             href="https://booking.naver.com/booking/13/bizes/318986"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className="flex flex-col items-center justify-center gap-1 active:bg-gray-50 border-r border-[#E9E4DB]/50"
           >
             <span
@@ -90,7 +90,7 @@ export default function FloatingBanner() {
           <a
             href="https://talk.naver.com/profile/w4tsxu"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className="flex flex-col items-center justify-center gap-1 active:bg-gray-50 border-r border-[#E9E4DB]/50"
           >
             <div className="w-5 h-5 rounded-full bg-[#03C75A] flex items-center justify-center text-white">
@@ -105,7 +105,7 @@ export default function FloatingBanner() {
           <a
             href="https://www.trinityclinic.co.kr/board/reservation/write"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
             className="flex flex-col items-center justify-center gap-1 active:bg-gray-50 border-r border-[#E9E4DB]/50"
           >
             <CalendarCheck className="w-5 h-5 text-[#3E522D]" />

@@ -64,7 +64,7 @@ export function ReviewSection() {
              <a 
                href="https://www.trinityclinic.co.kr/board/trinity_review" 
                target="_blank" 
-               rel="noopener noreferrer"
+               rel="noopener"
              >
                <Button variant="link" className="text-[#3E522D] font-bold text-lg p-0 hover:no-underline hover:opacity-70 transition-opacity">
                  전체 후기 보러가기 <ArrowRight className="ml-2 w-5 h-5" />
@@ -132,7 +132,7 @@ export function ReviewSection() {
             <a 
               href="https://www.trinityclinic.co.kr/board/trinity_review" 
               target="_blank" 
-              rel="noopener noreferrer"
+              rel="noopener"
               className="block w-full"
             >
               <Button variant="outline" className="w-full py-6 text-base font-bold border-[#3E522D] text-[#3E522D] hover:bg-[#3E522D] hover:text-white transition-colors">

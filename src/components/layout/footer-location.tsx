@@ -82,7 +82,7 @@ export function FooterLocationSection() {
               <a
                 href={NAVER_MAP_SEARCH}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener"
                 className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-[#3E522D] text-white font-bold text-sm hover:bg-[#2D3B1A] transition-colors"
               >
                 <Map className="w-4 h-4" aria-hidden />
@@ -117,7 +117,7 @@ export function FooterLocationSection() {
             <a
               href={NAVER_MAP_SEARCH}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="text-[#3E522D] font-semibold underline"
             >
               네이버 지도에서 보기
@@ -126,7 +126,7 @@ export function FooterLocationSection() {
             <a
               href={GOOGLE_MAPS_DIRECTIONS}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="text-[#3E522D] font-semibold underline"
             >
               길찾기

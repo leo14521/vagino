@@ -31,7 +31,7 @@ export default function Footer() {
             <a
               href="https://booking.naver.com/booking/13/bizes/318986"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="noopener"
               className="group flex-1 bg-white border border-[#E9E4DB] hover:border-[#3E522D] text-[#3A4035] py-5 px-8 rounded-[2.5rem] transition-all flex flex-col items-center gap-1 shadow-sm hover:shadow-md"
             >
               <div className="flex items-center gap-2 text-[#A1A89A] group-hover:text-[#3E522D] transition-colors">
