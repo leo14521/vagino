@@ -3,7 +3,7 @@ import Link from "next/link";
 import { Phone, Calendar } from "lucide-react";
 import { TrinityBrandLogo } from "@/components/brand/trinity-brand-logo";
 import { FooterLocationSection } from "@/components/layout/footer-location";
-import { NAVER_BOOKING_URL } from "@/lib/site";
+import { CLITORIS_ROUTES, FILLER_ROUTES, LABIA_ROUTES, MINORA_ROUTES, NAVER_BOOKING_URL } from "@/lib/site";
 
 export default function Footer() {
   return (
@@ -76,8 +76,26 @@ export default function Footer() {
                 <span className="text-[#E9E4DB]" aria-hidden>
                   |
                 </span>
-                <Link href="/perineum" className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
-                  회음부관리
+                <Link href={LABIA_ROUTES.hub} className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  대음순수술
+                </Link>
+                <span className="text-[#E9E4DB]" aria-hidden>
+                  |
+                </span>
+                <Link href={CLITORIS_ROUTES.hub} className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  음핵수술
+                </Link>
+                <span className="text-[#E9E4DB]" aria-hidden>
+                  |
+                </span>
+                <Link href={MINORA_ROUTES.hub} className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  소음순수술
+                </Link>
+                <span className="text-[#E9E4DB]" aria-hidden>
+                  |
+                </span>
+                <Link href={FILLER_ROUTES.hub} className="text-[#6B7562] hover:text-[#3E522D] transition-colors">
+                  질필러
                 </Link>
               </nav>
             </div>

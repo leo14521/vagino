@@ -6,8 +6,8 @@ import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import { ArrowDown, ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { PerineumMinoraTab } from "@/components/sections/perineum-minora-tab";
-import { PERINEUM_ROUTES } from "@/lib/site";
+import { PerineumClitorisSection } from "@/components/sections/perineum-clitoris-section";
+import { LABIA_ROUTES } from "@/lib/site";
 
 const TC = (id: string) =>
   `https://www.trinityclinic.co.kr/trinity/file/IMAGE/uu/${id}`;
@@ -28,10 +28,10 @@ function TcImg({ id, alt }: { id: string; alt: string }) {
 }
 
 const TABS = [
-  { id: "labia" as const, label: "대음순수술", href: PERINEUM_ROUTES.labia },
-  { id: "minora" as const, label: "소음순수술", href: PERINEUM_ROUTES.minora },
-  { id: "laser" as const, label: "회음부 제모", href: PERINEUM_ROUTES.hairRemoval },
-  { id: "whiten" as const, label: "회음부 미백", href: PERINEUM_ROUTES.whitening },
+  { id: "labia" as const, label: "대음순수술", href: LABIA_ROUTES.surgery },
+  { id: "hair-removal" as const, label: "회음부 제모", href: LABIA_ROUTES.hairRemoval },
+  { id: "whitening" as const, label: "회음부 미백", href: LABIA_ROUTES.whitening },
+  { id: "clitoris" as const, label: "음핵수술", href: LABIA_ROUTES.clitoris },
 ];
 
 type TabId = (typeof TABS)[number]["id"];
@@ -40,8 +40,9 @@ type SearchParamsLike = Pick<URLSearchParams, "get">;
 
 function tabFromSearchParams(sp: SearchParamsLike): TabId {
   const raw = sp.get("tab");
-  if (raw === "labia" || raw === "minora" || raw === "laser" || raw === "whiten") return raw;
-  if (raw === "hair-removal") return "laser";
+  if (raw === "labia" || raw === "hair-removal" || raw === "whitening" || raw === "clitoris") return raw;
+  if (raw === "laser") return "hair-removal";
+  if (raw === "whiten") return "whitening";
   return "labia";
 }
 
@@ -133,21 +134,21 @@ function PerineumWhiteningProcess() {
   );
 }
 
-export function PerineumCareSection() {
+export function LabiaCareSection() {
   const searchParams = useSearchParams();
   const tab = useMemo(() => tabFromSearchParams(searchParams), [searchParams]);
 
   return (
     <section
-      id="perineum-care"
+      id="labia-care"
       className="scroll-mt-28 border-y border-[#E9E4DB]/70 bg-[#F6F3EE] py-16 md:py-24 lg:py-28"
     >
       <div className="container mx-auto max-w-6xl px-4 md:px-6">
         <nav aria-label="breadcrumb" className="mb-8 text-center text-sm text-[#6B7264]">
           <ol className="inline-flex flex-wrap items-center justify-center gap-1.5">
             <li>
-              <Link href={PERINEUM_ROUTES.hub} className="hover:text-[#3E522D] hover:underline">
-                회음부관리
+              <Link href={LABIA_ROUTES.hub} className="hover:text-[#3E522D] hover:underline">
+                대음순수술
               </Link>
             </li>
             <li aria-hidden className="text-[#C4C0B8]">
@@ -160,9 +161,9 @@ export function PerineumCareSection() {
         </nav>
 
         <div
-          className="mb-10 grid max-w-md grid-cols-2 gap-2 mx-auto md:mx-0 md:flex md:max-w-none md:flex-wrap md:justify-center"
+          className="mb-10 grid max-w-lg grid-cols-2 gap-2 mx-auto sm:max-w-2xl md:mx-0 md:flex md:max-w-none md:flex-wrap md:justify-center"
           role="tablist"
-          aria-label="회음부 케어 종류"
+          aria-label="대음순 케어 종류"
         >
           {TABS.map((t) => {
             const on = tab === t.id;
@@ -313,9 +314,7 @@ export function PerineumCareSection() {
               </>
             )}
 
-            {tab === "minora" && <PerineumMinoraTab />}
-
-            {tab === "laser" && (
+            {tab === "hair-removal" && (
               <>
                 <div className="mx-auto max-w-3xl text-center">
                   <h3 className="text-xl font-bold text-[#1A1F16] md:text-2xl break-keep">
@@ -400,7 +399,7 @@ export function PerineumCareSection() {
               </>
             )}
 
-            {tab === "whiten" && (
+            {tab === "whitening" && (
               <>
                 <div className="mx-auto max-w-3xl text-center">
                   <h3 className="text-xl font-bold text-[#1A1F16] md:text-2xl break-keep">
@@ -540,6 +539,8 @@ export function PerineumCareSection() {
                 </div>
               </>
             )}
+
+            {tab === "clitoris" && <PerineumClitorisSection />}
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-[11px] leading-relaxed text-[#A1A89A]">
@@ -550,3 +551,5 @@ export function PerineumCareSection() {
     </section>
   );
 }
+
+export const PerineumCareSection = LabiaCareSection;

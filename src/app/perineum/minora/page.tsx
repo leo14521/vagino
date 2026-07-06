@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
+import { MINORA_ROUTES } from "@/lib/site";
 
-/** 구 URL·북마크 호환 */
 export default function PerineumMinoraLegacyRedirect() {
-  permanentRedirect("/perineum?tab=minora");
+  permanentRedirect(MINORA_ROUTES.hub);
 }

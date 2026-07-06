@@ -23,13 +23,38 @@ export const CLINIC = {
 export const NAVER_BOOKING_URL =
   "https://map.naver.com/p/entry/place/1714131744" as const;
 
-/** 회음부 — 단일 페이지 `/perineum` + 쿼리(북마크·공유용). 구 경로는 리다이렉트 */
+/** 대음순수술 — `/labia` + 탭(회음부 제모·미백). 구 `/perineum`은 리다이렉트 */
+export const LABIA_ROUTES = {
+  hub: "/labia",
+  surgery: "/labia",
+  hairRemoval: "/labia?tab=hair-removal",
+  whitening: "/labia?tab=whitening",
+  clitoris: "/labia?tab=clitoris",
+} as const;
+
+/** 소음순수술 — 독립 페이지 */
+export const MINORA_ROUTES = {
+  hub: "/minora",
+} as const;
+
+/** 음핵수술 — 대음순 페이지 탭 (`/labia?tab=clitoris`). `/clitoris`는 리다이렉트 */
+export const CLITORIS_ROUTES = {
+  hub: "/labia?tab=clitoris",
+} as const;
+
+/** 질필러 — 원더필 랜딩 */
+export const FILLER_ROUTES = {
+  hub: "/filler",
+  wonderfill: "/filler",
+} as const;
+
+/** @deprecated 구 경로 — 리다이렉트용 */
 export const PERINEUM_ROUTES = {
   hub: "/perineum",
-  labia: "/perineum?tab=labia",
-  minora: "/perineum?tab=minora",
-  hairRemoval: "/perineum?tab=laser",
-  whitening: "/perineum?tab=whiten",
+  labia: LABIA_ROUTES.surgery,
+  minora: MINORA_ROUTES.hub,
+  hairRemoval: LABIA_ROUTES.hairRemoval,
+  whitening: LABIA_ROUTES.whitening,
 } as const;
 
 /** 질레이저 — 단일 페이지 `/laser` + 쿼리(탭·북마크용). 기본(질쎄라)은 쿼리 없음 */

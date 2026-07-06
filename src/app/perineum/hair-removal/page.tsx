@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
+import { LABIA_ROUTES } from "@/lib/site";
 
-/** 구 URL 호환 */
 export default function PerineumHairRemovalLegacyRedirect() {
-  permanentRedirect("/perineum?tab=laser");
+  permanentRedirect(LABIA_ROUTES.hairRemoval);
 }

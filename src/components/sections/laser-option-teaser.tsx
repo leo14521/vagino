@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import { LASER_ROUTES } from "@/lib/site";
+import { FILLER_ROUTES, LASER_ROUTES } from "@/lib/site";
 
 const OPTIONS = [
-  { href: "/#consultation", label: "질필러" },
-  { href: LASER_ROUTES.revive, label: "비비브" },
-  { href: LASER_ROUTES.monalisa, label: "모나리자터치" },
+  { href: FILLER_ROUTES.hub, label: "질필러" },
   { href: LASER_ROUTES.revive, label: "리비브" },
+  { href: LASER_ROUTES.monalisa, label: "모나리자터치" },
   { href: LASER_ROUTES.zisella, label: "질쎄라" },
 ] as const;
 

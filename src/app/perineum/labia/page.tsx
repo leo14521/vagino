@@ -1,6 +1,6 @@
 import { permanentRedirect } from "next/navigation";
+import { LABIA_ROUTES } from "@/lib/site";
 
-/** 구 URL 호환 */
 export default function PerineumLabiaLegacyRedirect() {
-  permanentRedirect("/perineum?tab=labia");
+  permanentRedirect(LABIA_ROUTES.surgery);
 }

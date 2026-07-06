@@ -1,4 +1,10 @@
-import { LASER_ROUTES, PERINEUM_ROUTES } from "@/lib/site";
+import {
+  CLITORIS_ROUTES,
+  FILLER_ROUTES,
+  LABIA_ROUTES,
+  LASER_ROUTES,
+  MINORA_ROUTES,
+} from "@/lib/site";
 
 const OFFICIAL = "https://www.trinityclinic.co.kr";
 
@@ -53,11 +59,15 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
     label: "여성성형센터",
     items: [
       { label: "질성형", href: "/" },
-      { label: "질레이저", href: LASER_ROUTES.hub },
-      { label: "대음순수술", href: PERINEUM_ROUTES.labia },
-      { label: "소음순수술", href: PERINEUM_ROUTES.minora },
-      { label: "소음순성형", href: `${OFFICIAL}/sub/menu3-2`, external: true },
-      { label: "회음부관리", href: `${OFFICIAL}/sub/menu3-3`, external: true },
+      { label: "질쎄라", href: LASER_ROUTES.zisella },
+      { label: "모나리자터치", href: LASER_ROUTES.monalisa },
+      { label: "리비브", href: LASER_ROUTES.revive },
+      { label: "대음순수술", href: LABIA_ROUTES.surgery },
+      { label: "회음부제모", href: LABIA_ROUTES.hairRemoval },
+      { label: "회음부미백", href: LABIA_ROUTES.whitening },
+      { label: "음핵수술", href: LABIA_ROUTES.clitoris },
+      { label: "소음순수술", href: MINORA_ROUTES.hub },
+      { label: "원더필", href: FILLER_ROUTES.hub },
     ],
   },
   {
@@ -99,17 +109,22 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
 export const WOMEN_SURGERY_QUICK_LINKS = [
   { label: "질성형", href: "/", match: "women" as const },
   { label: "질레이저", href: LASER_ROUTES.hub, match: "laser" as const },
-  { label: "대음순수술", href: PERINEUM_ROUTES.labia, match: "labia" as const },
-  { label: "소음순수술", href: PERINEUM_ROUTES.minora, match: "minora" as const },
+  { label: "대음순수술", href: LABIA_ROUTES.hub, match: "labia" as const },
+  { label: "소음순수술", href: MINORA_ROUTES.hub, match: "minora" as const },
+  { label: "질필러", href: FILLER_ROUTES.hub, match: "filler" as const },
 ];
 
-export function resolveActiveWomenLink(pathname: string, tab: string | null) {
+export type WomenQuickLinkMatch = (typeof WOMEN_SURGERY_QUICK_LINKS)[number]["match"];
+
+export function resolveActiveWomenLink(pathname: string, tab: string | null): WomenQuickLinkMatch | null {
   if (pathname === "/women" || pathname === "/") return "women";
   if (pathname === "/laser") return "laser";
-  if (pathname.startsWith("/perineum")) {
-    if (tab === "minora") return "minora";
+  if (pathname.startsWith("/labia") || pathname === "/perineum") {
     return "labia";
   }
+  if (pathname.startsWith("/minora")) return "minora";
+  if (pathname.startsWith("/filler")) return "filler";
+  if (pathname.startsWith("/perineum") && tab === "minora") return "minora";
   return null;
 }
 
@@ -117,4 +132,27 @@ export function resolveActiveNavCategory(pathname: string, tab: string | null): 
   const women = resolveActiveWomenLink(pathname, tab);
   if (women) return "women-surgery";
   return "";
+}
+
+export function isWomenSurgeryNavLinkActive(
+  item: NavLink,
+  pathname: string,
+  tab: string | null
+): boolean {
+  if (item.external) return false;
+  if (item.href === "/" && (pathname === "/" || pathname === "/women")) return true;
+  if (item.href === LASER_ROUTES.hub && pathname === "/laser" && !tab) return true;
+  if (item.href === LASER_ROUTES.monalisa && pathname === "/laser" && tab === "monalisa") return true;
+  if (item.href === LASER_ROUTES.revive && pathname === "/laser" && tab === "revive") return true;
+  if (item.href === LABIA_ROUTES.surgery && pathname.startsWith("/labia") && (!tab || tab === "labia"))
+    return true;
+  if (item.href === LABIA_ROUTES.hairRemoval && pathname.startsWith("/labia") && tab === "hair-removal")
+    return true;
+  if (item.href === LABIA_ROUTES.whitening && pathname.startsWith("/labia") && tab === "whitening")
+    return true;
+  if (item.href === LABIA_ROUTES.clitoris && pathname.startsWith("/labia") && tab === "clitoris")
+    return true;
+  if (item.href === MINORA_ROUTES.hub && pathname.startsWith("/minora")) return true;
+  if (item.href === FILLER_ROUTES.hub && pathname.startsWith("/filler")) return true;
+  return false;
 }

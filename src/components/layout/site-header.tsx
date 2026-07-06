@@ -7,6 +7,7 @@ import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react"
 import { Menu, Phone, X } from "lucide-react";
 import { TrinityBrandLogo } from "@/components/brand/trinity-brand-logo";
 import {
+  isWomenSurgeryNavLinkActive,
   TRINITY_NAV_CATEGORIES,
   WOMEN_SURGERY_QUICK_LINKS,
   resolveActiveNavCategory,
@@ -108,13 +109,7 @@ export function SiteHeader() {
     };
   }, [mobileOpen, closeMobile]);
 
-  const isLinkActive = (item: NavLink) => {
-    if (item.href === "/" && activeWomen === "women") return true;
-    if (item.href === "/laser" && activeWomen === "laser") return true;
-    if (item.href.includes("tab=labia") && activeWomen === "labia") return true;
-    if (item.href.includes("tab=minora") && activeWomen === "minora") return true;
-    return false;
-  };
+  const isLinkActive = (item: NavLink) => isWomenSurgeryNavLinkActive(item, pathname, tab);
 
   const mobileDrawer =
     mounted && mobileOpen ? (
