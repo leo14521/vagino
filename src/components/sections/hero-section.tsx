@@ -132,7 +132,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.06, ease }}
             className="mt-6 sm:mt-7 lg:mt-8 [text-shadow:0_2px_28px_rgba(0,0,0,0.55)]"
           >
-            <span className="sr-only">강남 트리니티여성의원 질축소수술 (이쁜이수술)</span>
+            <span className="sr-only">강남 트리니티여성의원 질성형수술 이쁜이수술 질축소수술</span>
             <span aria-hidden="true">
               <span className="block text-[clamp(1.75rem,5.8vw,2.65rem)] font-extrabold leading-[1.18] tracking-[-0.04em] text-white sm:leading-[1.14] lg:text-[clamp(2.25rem,3.8vw,3.35rem)] break-keep">
                 여성의 몸을,

@@ -8,6 +8,7 @@ const VAGINAL_GUIDE = [
   { id: "insight", label: "자가 진단" },
   { id: "comparison", label: "수술원리" },
   { id: "pain-free", label: "통증·케어" },
+  { id: "surgery-guide", label: "질성형 안내" },
   { id: "laser-link", label: "질레이저" },
   { id: "doctors", label: "의료진" },
   { id: "review", label: "후기" },
