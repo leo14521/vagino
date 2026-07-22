@@ -4,6 +4,8 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # output: export 정적 산출물 — Next 런타임 플러그인 비활성
+  NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
 [[redirects]]
   from = "/"
