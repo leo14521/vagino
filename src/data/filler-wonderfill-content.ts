@@ -1,45 +1,47 @@
+import { publicAsset } from "@/lib/site";
+
 /** 원더필 질필러 랜딩 — 이미지에서 추출한 카피 (설명 1·2 등) */
 export const WONDERFILL_IMAGES = {
   product: {
-    src: "/images/filler/product-box.webp",
+    src: publicAsset("/images/filler/product-box.webp"),
     alt: "원더필(Wonder Fill) 제품 박스 및 주사기",
     width: 960,
     height: 702,
   },
   injectionBefore: {
-    src: "/images/filler/injection-before.webp",
+    src: publicAsset("/images/filler/injection-before.webp"),
     alt: "질필러 주입 전 질벽 단면",
     width: 520,
     height: 519,
   },
   injectionAfter: {
-    src: "/images/filler/injection-after.webp",
+    src: publicAsset("/images/filler/injection-after.webp"),
     alt: "질필러 주입 후 질벽 단면 — 볼륨 보강",
     width: 520,
     height: 519,
   },
   injection2Before: {
-    src: "/images/filler/injection2-before.webp",
+    src: publicAsset("/images/filler/injection2-before.webp"),
     alt: "원더필 시술 전 질 단면",
     width: 520,
     height: 476,
   },
   injection2After: {
-    src: "/images/filler/injection2-after.webp",
+    src: publicAsset("/images/filler/injection2-after.webp"),
     alt: "원더필 시술 후 질 단면",
     width: 520,
     height: 476,
   },
   /** 원더필 주입효과1 — 조직 생착 (1개월·6개월 좌우 비교) */
   effectTissueCompare: {
-    src: "/images/filler/effect-tissue-compare.webp",
+    src: publicAsset("/images/filler/effect-tissue-compare.webp"),
     alt: "원더필 주입 1개월·6개월 조직 현미경 비교",
     width: 1100,
     height: 405,
   },
   /** 원더필 주입효과2 — 콜라겐 (1개월·6개월 좌우 비교) */
   effectCollagenCompare: {
-    src: "/images/filler/effect-collagen-compare.webp",
+    src: publicAsset("/images/filler/effect-collagen-compare.webp"),
     alt: "원더필 주입 1개월·6개월 콜라겐 조직 비교",
     width: 1100,
     height: 457,

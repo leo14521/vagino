@@ -1,3 +1,5 @@
+import { publicAsset } from "@/lib/site";
+
 export const SITE_CONFIG = {
   name: "Trinity Women's Clinic",
   nameKr: "트리니티 여성의원",
@@ -65,7 +67,7 @@ export const METHOD_STEPS = [
     title: "골반기저근 복원",
     subtitle: "Deep Muscle Restoration",
     description: "단순히 점막만 꿰매는 것이 아닙니다. 손상되고 늘어난 깊은 층의 근육을 찾아 본래의 위치로 당겨 묶어주어 탄탄한 지지대를 만듭니다.",
-    image: "/images/method_step1.jpg" 
+    image: publicAsset("/images/method_step1.jpg") 
   },
   {
     id: "step-02",
@@ -73,15 +75,15 @@ export const METHOD_STEPS = [
     title: "근막 강화 & 주름 형성",
     subtitle: "Fascia Reinforcement",
     description: "질 점막 아래 근막을 한 번 더 강화하고, 자연스러운 주름(Rugae)을 형성하여 기능적 마찰력과 성감을 극대화합니다.",
-    image: "/images/method_step2.jpg"
+    image: publicAsset("/images/method_step2.jpg")
   },
   {
     id: "step-03",
     number: "03",
-    title: "회음부 심미 재건",
+    title: "외음부 심미 재건",
     subtitle: "Aesthetic Reconstruction",
     description: "기능적 복원 후, 질 입구 부분을 심미적으로 디자인하여 외관상의 만족도까지 완성하는 토탈 솔루션입니다.",
-    image: "/images/method_step3.jpg"
+    image: publicAsset("/images/method_step3.jpg")
   }
 ];
 

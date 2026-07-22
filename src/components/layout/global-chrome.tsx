@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 import { SiteHeader } from "@/components/layout/site-header";
 
+/** 여성성형센터 전용 헤더(메가메뉴 + 서브탭). 통합사이트 global-ui 헤더는 사용하지 않는다. */
 export function GlobalChrome({ children }: { children: React.ReactNode }) {
   return (
     <>

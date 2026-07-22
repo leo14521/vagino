@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useSearchParams } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { Menu, Phone, X } from "lucide-react";
@@ -14,7 +14,7 @@ import {
   resolveActiveWomenLink,
   type NavLink,
 } from "@/lib/site-navigation";
-import { CLINIC } from "@/lib/site";
+import { CLINIC, HOME_ROUTE } from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const CLINIC_DISPLAY_NAME = "트리니티 여성의원";
@@ -50,8 +50,6 @@ function NavAnchor({
 
 export function SiteHeader() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const tab = searchParams.get("tab");
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileCategory, setMobileCategory] = useState<string | null>("women-surgery");
   const [openCategory, setOpenCategory] = useState<string | null>(null);
@@ -59,8 +57,8 @@ export function SiteHeader() {
   const menuId = useId();
   const headerRef = useRef<HTMLElement>(null);
 
-  const activeWomen = useMemo(() => resolveActiveWomenLink(pathname, tab), [pathname, tab]);
-  const activeCategory = useMemo(() => resolveActiveNavCategory(pathname, tab), [pathname, tab]);
+  const activeWomen = useMemo(() => resolveActiveWomenLink(pathname), [pathname]);
+  const activeCategory = useMemo(() => resolveActiveNavCategory(pathname), [pathname]);
 
   const closeDesktopMenu = useCallback(() => setOpenCategory(null), []);
   const closeMobile = useCallback(() => setMobileOpen(false), []);
@@ -109,7 +107,7 @@ export function SiteHeader() {
     };
   }, [mobileOpen, closeMobile]);
 
-  const isLinkActive = (item: NavLink) => isWomenSurgeryNavLinkActive(item, pathname, tab);
+  const isLinkActive = (item: NavLink) => isWomenSurgeryNavLinkActive(item, pathname);
 
   const mobileDrawer =
     mounted && mobileOpen ? (
@@ -123,7 +121,7 @@ export function SiteHeader() {
           className="absolute right-0 top-0 flex h-full w-[min(100%,20rem)] flex-col bg-white shadow-[-8px_0_24px_rgba(0,0,0,0.08)]"
         >
           <div className="flex items-center justify-between border-b border-[#EEEEEE] px-4 py-3">
-            <Link href="/" onClick={closeMobile} className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
+            <Link href={HOME_ROUTE} onClick={closeMobile} className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
               <TrinityBrandLogo className="h-8 max-w-[100px]" />
               <span className="site-header__brand-name">{CLINIC_DISPLAY_NAME}</span>
             </Link>
@@ -177,7 +175,7 @@ export function SiteHeader() {
     <>
       <header ref={headerRef} className="site-header">
         <div className="site-header__inner">
-          <Link href="/" className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
+          <Link href={HOME_ROUTE} className="site-header__brand" aria-label={`${CLINIC_DISPLAY_NAME} 홈`}>
             <TrinityBrandLogo priority className="h-8 max-w-[100px] sm:h-9 sm:max-w-[120px] lg:h-10 lg:max-w-[140px]" />
             <span className="site-header__brand-name">{CLINIC_DISPLAY_NAME}</span>
           </Link>

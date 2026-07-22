@@ -4,36 +4,30 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Phone } from "lucide-react";
-import { BRAND_FILM_VIDEO_SRC, CLINIC, HERO_BRAND_FILM_LOOP } from "@/lib/site";
+import {
+  BRAND_FILM_VIDEO_SRC,
+  CLINIC,
+  HERO_BRAND_FILM_LOOP,
+  withBasePathOnce,
+} from "@/lib/site";
 import { cn } from "@/lib/utils";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
 function HeroBackgroundVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoad, setShouldLoad] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [reducedMotion, setReducedMotion] = useState(false);
+  const [sourceIndex, setSourceIndex] = useState(0);
+  const sources = [withBasePathOnce(BRAND_FILM_VIDEO_SRC)];
 
   useEffect(() => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setReducedMotion(prefersReduced);
-    if (prefersReduced) return;
-
-    const start = () => setShouldLoad(true);
-
-    if ("requestIdleCallback" in window) {
-      const id = window.requestIdleCallback(start, { timeout: 1600 });
-      return () => window.cancelIdleCallback(id);
-    }
-
-    const timer = setTimeout(start, 900);
-    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
     const video = videoRef.current;
-    if (!shouldLoad || !video) return;
+    if (!video || reducedMotion) return;
 
     const { start, end } = HERO_BRAND_FILM_LOOP;
     let cancelled = false;
@@ -50,8 +44,8 @@ function HeroBackgroundVideo() {
     const onSeeked = () => {
       if (cancelled) return;
       if (video.currentTime < start - 0.5 || video.currentTime > start + 0.5) return;
-      void video.play().then(() => {
-        if (!cancelled) setIsPlaying(true);
+      void video.play().catch(() => {
+        /* autoplay may fail on some browsers */
       });
     };
 
@@ -61,15 +55,21 @@ function HeroBackgroundVideo() {
       }
     };
 
+    const onError = () => {
+      if (cancelled) return;
+      setSourceIndex(0);
+    };
+
     video.muted = true;
     video.defaultMuted = true;
     video.playsInline = true;
     video.preload = "auto";
-    video.src = BRAND_FILM_VIDEO_SRC;
+    video.src = sources[sourceIndex];
 
     video.addEventListener("loadedmetadata", seekToLoopStart);
     video.addEventListener("seeked", onSeeked);
     video.addEventListener("timeupdate", onTimeUpdate);
+    video.addEventListener("error", onError);
     video.load();
 
     return () => {
@@ -77,26 +77,29 @@ function HeroBackgroundVideo() {
       video.removeEventListener("loadedmetadata", seekToLoopStart);
       video.removeEventListener("seeked", onSeeked);
       video.removeEventListener("timeupdate", onTimeUpdate);
+      video.removeEventListener("error", onError);
     };
-  }, [shouldLoad]);
+  }, [reducedMotion, sourceIndex]);
 
   if (reducedMotion) return null;
 
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-      {shouldLoad ? (
-        <video
-          ref={videoRef}
-          className={cn(
-            "absolute inset-0 h-full w-full object-cover object-[72%_24%] sm:object-[76%_22%] lg:object-[80%_20%]",
-            "transition-opacity duration-700 ease-out",
-            isPlaying ? "opacity-100" : "opacity-0"
-          )}
-          muted
-          playsInline
-          disablePictureInPicture
-        />
-      ) : null}
+      <video
+        ref={videoRef}
+        key={sources[sourceIndex]}
+        className={cn(
+          "absolute inset-0 h-full w-full object-cover object-[72%_24%] sm:object-[76%_22%] lg:object-[80%_20%]",
+          "transition-opacity duration-700 ease-out opacity-100"
+        )}
+        autoPlay
+        muted
+        playsInline
+        preload="metadata"
+        disablePictureInPicture
+      >
+        <source src={sources[sourceIndex]} type="video/mp4" />
+      </video>
       {/* 왼쪽 카피 가독 / 오른쪽 수술실·의료진 노출 */}
       <div className="absolute inset-0 bg-[#111610]/55" />
       <div className="absolute inset-0 bg-gradient-to-r from-[#111610]/97 via-[#111610]/82 to-[#111610]/25 sm:via-[#111610]/75" />

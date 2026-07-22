@@ -1,331 +1,407 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
+import { Reveal } from "@/components/ui/reveal";
 
 const TC = (id: string) =>
   `https://www.trinityclinic.co.kr/trinity/file/IMAGE/uu/${id}`;
 
-/** CDN 원본 비율 유지 — 고정 width/height로 레이아웃 박스가 늘어나지 않게 */
-function TcImg({
-  id,
-  alt,
-  className = "",
-  maxWidth = "max-w-2xl",
-  frame = true,
-}: {
-  id: string;
-  alt: string;
-  className?: string;
-  maxWidth?: string;
-  frame?: boolean;
-}) {
+const ARROW_IDS = new Set([
+  "5bd18dcad0f447d7ab992d4bdb91082e",
+  "a9d4a5937c7b41f28da7e70492516c8e",
+]);
+
+function Kicker({ children, tone = "olive" }: { children: React.ReactNode; tone?: "olive" | "gold" }) {
   return (
-    <div className={cn("mx-auto w-full", maxWidth, className)}>
-      <div
-        className={cn(
-          "flex justify-center",
-          frame && "overflow-hidden rounded-2xl border border-[#E9E4DB] bg-[#FAF9F6] p-2 sm:p-3"
-        )}
-      >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={TC(id)}
-          alt={alt}
-          className="h-auto max-h-[min(72vh,520px)] w-auto max-w-full object-contain"
-          loading="lazy"
-          decoding="async"
-        />
-      </div>
+    <p
+      className={cn(
+        "text-sm font-bold uppercase tracking-[0.25em]",
+        tone === "olive" ? "text-[#3E522D]" : "text-[#C9BFA9]",
+      )}>
+      {children}
+    </p>
+  );
+}
+
+/** 얇은 미니멀 화살표 (모바일 아래 방향 / 데스크톱 오른쪽 방향) */
+function FlowArrow() {
+  return (
+    <div className="flex shrink-0 items-center justify-center text-[#C9BFA9]">
+      <svg
+        className="h-6 w-6 rotate-90 sm:rotate-0"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        aria-hidden>
+        <path d="M4 12h15M13 6l6 6-6 6" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     </div>
   );
 }
 
-function FlowArrow({ className = "", fileId = "5bd18dcad0f447d7ab992d4bdb91082e" }: { className?: string; fileId?: string }) {
-  return (
-    <div className={cn("flex shrink-0 items-center justify-center px-1", className)}>
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={TC(fileId)}
-        alt=""
-        className="h-6 w-auto rotate-90 object-contain opacity-75 sm:h-7 md:rotate-0"
-        aria-hidden
-      />
-    </div>
-  );
-}
-
-/** 공식 c01_3: 전·화살표·후 이미지 스트립 (원본 비율 유지) */
-function SurgeryDiagramRow({
+/** 전·후 다이어그램 스트립 — 은은한 배경 위 갤러리형 (테두리 없음) */
+function DiagramStrip({
   ids,
   alt,
+  dark = false,
 }: {
   ids: readonly string[];
   alt: string;
+  dark?: boolean;
 }) {
-  const arrowIds = new Set([
-    "5bd18dcad0f447d7ab992d4bdb91082e",
-    "a9d4a5937c7b41f28da7e70492516c8e",
-  ]);
-
   return (
-    <div className="mx-auto mt-6 flex max-w-4xl flex-col items-center justify-center gap-4 sm:flex-row sm:gap-2 md:gap-3">
-      {ids.map((id, index) => {
-        if (arrowIds.has(id)) {
-          return <FlowArrow key={`${id}-${index}`} fileId={id} />;
-        }
-        return (
+    <div className="mx-auto mt-10 flex max-w-3xl flex-col items-center justify-center gap-6 sm:flex-row sm:gap-5">
+      {ids.map((id, i) =>
+        ARROW_IDS.has(id) ? (
+          <FlowArrow key={`arrow-${i}`} />
+        ) : (
           <div
-            key={`${id}-${index}`}
-            className="flex min-w-0 max-w-[min(100%,240px)] flex-1 justify-center"
-          >
+            key={`${id}-${i}`}
+            className={cn(
+              "flex min-w-0 flex-1 items-center justify-center rounded-2xl p-5",
+              dark ? "bg-white" : "bg-[#F4F1EA]",
+            )}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={TC(id)}
               alt={alt}
-              className="h-auto max-h-44 w-auto max-w-full object-contain sm:max-h-52"
+              className="h-auto max-h-40 w-auto max-w-full object-contain"
               loading="lazy"
               decoding="async"
             />
           </div>
-        );
-      })}
+        ),
+      )}
     </div>
   );
 }
 
-function SurgeryInfoBar({
+/** 미니멀 스펙 그리드 — 아이콘 대신 타이포 + 좌측 강조선 */
+function SpecGrid({
   items,
+  dark = false,
 }: {
-  items: readonly { icon: string; label: string; value: string }[];
+  items: readonly { label: string; value: string }[];
+  dark?: boolean;
 }) {
   return (
-    <ul className="mx-auto mt-10 flex max-w-4xl flex-wrap items-stretch justify-center border-y border-[#957F6A] py-8">
+    <dl className="mx-auto mt-12 grid max-w-3xl grid-cols-2 gap-x-8 gap-y-8 sm:grid-cols-5">
       {items.map((item) => (
-        <li key={item.label} className="flex w-1/2 flex-col items-center px-2 text-center sm:w-1/5">
-          <div className="relative mb-2 h-8 w-8 sm:h-9 sm:w-9">
-            <Image src={TC(item.icon)} alt="" fill className="object-contain" sizes="36px" />
-          </div>
-          <p className="text-[11px] text-[#C5A065] sm:text-xs">{item.label}</p>
-          <span className="mt-1 text-xs font-extrabold text-[#C5A065] whitespace-pre-line sm:text-sm">
-            {item.value}
-          </span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-function InfoStrip({
-  items,
-}: {
-  items: readonly { icon: string; label: string; value: string }[];
-}) {
-  const cols =
-    items.length >= 6
-      ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
-      : "grid-cols-2 sm:grid-cols-3 md:grid-cols-5";
-
-  return (
-    <ul className={cn("mx-auto grid max-w-4xl gap-2 sm:gap-3", cols)}>
-      {items.map((item) => (
-        <li
+        <div
           key={item.label}
-          className="flex flex-col items-center rounded-2xl border border-[#E9E4DB] bg-white px-3 py-4 text-center"
-        >
-          <div className="relative mb-2 h-9 w-9 sm:h-10 sm:w-10">
-            <Image src={TC(item.icon)} alt="" fill className="object-contain" sizes="40px" />
-          </div>
-          <p className="text-[10px] font-bold uppercase tracking-wide text-[#957F6A]">{item.label}</p>
-          <p className="mt-1 text-[11px] font-semibold leading-snug text-[#1A1F16] whitespace-pre-line sm:text-xs">
+          className={cn(
+            "border-l-2 pl-4",
+            dark ? "border-[#C9BFA9]/50" : "border-[#3E522D]",
+          )}>
+          <dt
+            className={cn(
+              "text-[11px] font-bold uppercase tracking-[0.18em]",
+              dark ? "text-[#C9BFA9]" : "text-[#8A907E]",
+            )}>
+            {item.label}
+          </dt>
+          <dd
+            className={cn(
+              "mt-2 whitespace-pre-line text-base font-bold leading-snug",
+              dark ? "text-white" : "text-[#1A1F16]",
+            )}>
             {item.value}
-          </p>
-        </li>
+          </dd>
+        </div>
       ))}
-    </ul>
+    </dl>
   );
 }
 
-/** 소음순수술 전용 콘텐츠 */
+const CONTAINER = "mx-auto w-full max-w-6xl px-6 lg:px-8";
+
+/** 소음순수술 전용 콘텐츠 (프리미엄 리디자인) */
 export function PerineumMinoraSurgerySection() {
   return (
-    <div className="space-y-16 md:space-y-20">
-      {/* ── 소음순 수술 ── */}
-      <div id="minora-surgery" className="scroll-mt-28 space-y-12 md:space-y-14">
-        <div className="mx-auto max-w-3xl text-center">
-          <h3 className="text-xl font-bold leading-snug text-[#1A1F16] md:text-2xl break-keep">
-            매끄러운 모양과 자연스러운 주름
-          </h3>
-          <p className="mt-2 text-sm font-semibold text-[#3E522D]">
-            소음순 수술 (모양성형 / 미백)
-          </p>
-          <p className="mt-5 text-left text-sm leading-relaxed text-[#555D4E] md:text-center md:text-base break-keep">
-            <strong className="text-[#1A1F16]">소음순 모양</strong>이 변형되면 삶의 질에도 영향을 줄 수
-            있습니다. 선천적 이상이나 후천적 요인으로 변형된 소음순은 질염·방광염·골반염에 노출될
-            가능성이 높아지고, 늘어지거나 비대한 모양으로 성관계 시 자신감 저하를 호소하는 분이
-            많습니다.
-          </p>
-        </div>
-
-        <ul className="mx-auto grid max-w-5xl grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-5 md:gap-4">
-          {(
-            [
-              ["3585789670644941b6122ba63a18d305", "정상"],
-              ["999eb67df0b24701b684b4163f5b8c53", "편측소음순비대"],
-              ["b6494e93f9dc4239b8e9b955f3f928c6", "양측소음순비대"],
-              ["d8e743b72b414bc5bcc9c538d31051f7", "편측음핵주름\n소음순비대"],
-              ["c114deaa8d5c4e7bab7fb1e63d308917", "양측음핵주름\n소음순비대"],
-            ] as const
-          ).map(([id, label]) => (
-            <li
-              key={id}
-              className="flex flex-col overflow-hidden rounded-2xl border border-[#E9E4DB] bg-white shadow-sm"
-            >
-              <div className="flex flex-1 items-center justify-center bg-[#FAF9F6] p-2 sm:p-3">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={TC(id)}
-                  alt={label.replace("\n", " ")}
-                  className="h-auto max-h-28 w-full object-contain sm:max-h-32 md:max-h-36"
-                  loading="lazy"
-                  decoding="async"
-                />
-              </div>
-              <p className="bg-[#2E3A30] px-2 py-2.5 text-center text-[11px] font-semibold leading-snug text-white whitespace-pre-line sm:py-3 sm:text-xs">
-                {label}
-              </p>
-            </li>
-          ))}
-        </ul>
-
-        <div className="rounded-3xl bg-[#EDE6DC]/60 px-6 py-10 md:px-12">
-          <h4 className="text-center text-lg font-bold text-[#1A1F16]">소음순 착색</h4>
-          <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-relaxed text-[#5C5C5C] break-keep">
-            노화·마찰·질환 등으로 소음순 색이 짙어질 수 있습니다. 건강 이상이 아니더라도 성관계 시
-            자신감 저하나 심미적 불만으로 이어질 수 있으며, 소음순 미백으로 맑은 분홍빛 개선을
-            기대할 수 있습니다.
-          </p>
-          <div className="mx-auto mt-8 flex max-w-3xl flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
-            <TcImg
-              id="da3cd9238b934662991e4f32445f9136"
-              alt="착색된 소음순·대음순"
-              maxWidth="max-w-[min(100%,280px)]"
-            />
-            <FlowArrow />
-            <TcImg
-              id="de8c857e0e7e40ed82140ff4d3e20b9a"
-              alt="레이저 시술 후 개선"
-              maxWidth="max-w-[min(100%,280px)]"
-            />
-          </div>
-        </div>
-
-        <div className="overflow-hidden rounded-3xl border border-[#E9E4DB] bg-white">
-          <h4 className="bg-[#2E3A30] px-4 py-4 text-center text-lg font-bold text-[#E8E4DC]">
-            소음순 고민별 솔루션
-          </h4>
-          <div className="grid md:grid-cols-2">
-            <div className="border-b border-[#E9E4DB] p-6 md:border-b-0 md:border-r">
-              <p className="text-center text-base font-bold text-[#3E522D]">레이저 소음순 성형</p>
-              <ul className="mt-4 space-y-2 text-center text-sm text-[#5C5C5C]">
-                <li>소음순 비대칭</li>
-                <li>소음순 비대</li>
-                <li>주름지거나 늘어진 소음순</li>
-              </ul>
+    <div id="minora-surgery" className="scroll-mt-28">
+      {/* ── 유형 안내 (비대칭 인트로 + 케이스 갤러리) ── */}
+      <section className="bg-[#FDFBF7] py-24 lg:py-32">
+        <div className={CONTAINER}>
+          <Reveal className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+            <div className="lg:col-span-7">
+              <Kicker>Shape &amp; Balance</Kicker>
+              <h2 className="mt-6 text-4xl font-bold leading-[1.12] tracking-tight text-[#1A1F16] lg:text-5xl break-keep">
+                매끄러운 모양과<br className="hidden sm:block" /> 자연스러운 주름
+              </h2>
             </div>
-            <div className="p-6">
-              <p className="text-center text-base font-bold text-[#3E522D]">소음순 미백</p>
-              <ul className="mt-4 space-y-2 text-center text-sm text-[#5C5C5C]">
-                <li>어두운 소음순</li>
-              </ul>
-            </div>
-          </div>
-        </div>
+            <p className="text-lg leading-loose text-[#4A5248] lg:col-span-5 break-keep">
+              선천적 이상이나 후천적 요인으로 변형된 소음순은 질염·방광염·골반염에 노출될 가능성이
+              높아지고, 늘어지거나 비대한 모양으로 성관계 시 자신감 저하를 호소하는 분이 많습니다.
+            </p>
+          </Reveal>
 
-        <div className="rounded-3xl bg-[#2E3A30] px-4 py-10 text-white md:px-8">
-          <h4 className="text-center text-lg font-bold md:text-xl">소음순 수술 정보</h4>
-
-          <p className="mt-10 text-center text-sm text-[#E8D4C4]">레이저 클리어 소음순</p>
-          <SurgeryDiagramRow
-            alt="레이저 클리어 소음순"
-            ids={[
-              "b0b029d8b612408cb6a17072bf9fa2fa",
-              "5bd18dcad0f447d7ab992d4bdb91082e",
-              "de8c857e0e7e40ed82140ff4d3e20b9a",
-            ]}
-          />
-          <SurgeryInfoBar
-            items={[
-              { icon: "4e052efea1f34a6b8208b0ce70756537", label: "수술시간", value: "1시간" },
-              { icon: "74c06dd65eea4092a341050ecc6a808e", label: "마취방법", value: "국소마취" },
-              { icon: "cfbb10bc909943e391a3c9dbdaa12ce2", label: "회복기간", value: "1주일" },
-              { icon: "c15ad14125e84bf69e8b658b734b155c", label: "실밥제거", value: "없음" },
-              { icon: "23cbfaa1507341cd87d390b4db06ac82", label: "금욕기간", value: "2~3주" },
-            ]}
-          />
-
-          <p className="mt-14 text-center text-sm text-[#E8D4C4]">피부 모형도</p>
-          <SurgeryDiagramRow
-            alt="소음순 수술 피부 모형도"
-            ids={[
-              "4628ef214c1f4076a2a1476e684120ab",
-              "a9d4a5937c7b41f28da7e70492516c8e",
-              "32405f2f9cf64715bef2a518871b4ff6",
-              "a9d4a5937c7b41f28da7e70492516c8e",
-              "5a72fafc78ae42be943aa8a67dbc5066",
-            ]}
-          />
-          <SurgeryInfoBar
-            items={[
-              { icon: "4e052efea1f34a6b8208b0ce70756537", label: "수술시간", value: "1시간" },
-              { icon: "74c06dd65eea4092a341050ecc6a808e", label: "마취방법", value: "국소마취" },
-              { icon: "cfbb10bc909943e391a3c9dbdaa12ce2", label: "회복기간", value: "당일퇴원\n1주일" },
-              { icon: "c15ad14125e84bf69e8b658b734b155c", label: "실밥제거", value: "-" },
-              { icon: "23cbfaa1507341cd87d390b4db06ac82", label: "금욕기간", value: "-" },
-            ]}
-          />
-        </div>
-
-        <div className="rounded-2xl border border-[#E9E4DB] bg-white p-6 md:p-8">
-          <h4 className="text-center text-lg font-bold text-[#1A1F16]">이런 분들에게 추천합니다</h4>
-          <ul className="mx-auto mt-6 grid max-w-3xl gap-2 sm:grid-cols-2 text-sm text-[#5C5C5C]">
-            {[
-              "소음순 모양이 부끄럽고 신경 쓰일 때",
-              "성관계 시 소음순이 말려들어가 아프거나 불편할 때",
-              "소음순 주름이 많아 신경 쓰일 때",
-              "질염, 방광염 등 여성질환이 반복될 때",
-              "착색된 소음순으로 성관계가 많은 것으로 오해받을까 걱정될 때",
-              "잦은 마찰로 인해 어둡게 착색이 있는 분",
-              "호르몬 변화, 노화로 색이 진해진 분",
-              "진한 소음순 색으로 자신감이 저하되었을 때",
-            ].map((t) => (
-              <li key={t} className="flex gap-2">
-                <span className="text-[#3E522D] shrink-0">·</span>
-                <span className="break-keep">{t}</span>
-              </li>
+          <div className="mt-16 grid grid-cols-2 gap-6 sm:grid-cols-3 lg:mt-20 lg:grid-cols-5 lg:gap-8">
+            {(
+              [
+                ["3585789670644941b6122ba63a18d305", "정상"],
+                ["999eb67df0b24701b684b4163f5b8c53", "편측소음순비대"],
+                ["b6494e93f9dc4239b8e9b955f3f928c6", "양측소음순비대"],
+                ["d8e743b72b414bc5bcc9c538d31051f7", "편측음핵주름\n소음순비대"],
+                ["c114deaa8d5c4e7bab7fb1e63d308917", "양측음핵주름\n소음순비대"],
+              ] as const
+            ).map(([id, label]) => (
+              <figure key={id} className="group">
+                <div className="flex aspect-square items-center justify-center rounded-[1.75rem] bg-white p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 group-hover:-translate-y-1.5 group-hover:shadow-[0_16px_45px_rgb(0,0,0,0.10)]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={TC(id)}
+                    alt={label.replace("\n", " ")}
+                    className="max-h-full w-auto max-w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <figcaption className="mt-4 whitespace-pre-line text-center text-sm font-medium leading-snug text-[#4A5248] break-keep">
+                  {label}
+                </figcaption>
+              </figure>
             ))}
-          </ul>
+          </div>
         </div>
+      </section>
 
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="rounded-2xl border border-[#E9E4DB] bg-[#FDFCFB] p-6 md:p-8">
-            <h4 className="text-base font-bold text-[#3E522D]">수술 전</h4>
-            <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[#5C5C5C] break-keep">
-              <li>생리 주기에 맞춰 수술 일정을 조절합니다.</li>
-              <li>수술 전날은 무리한 행동·음주를 삼가고 휴식을 취합니다.</li>
-              <li>수술 당일에는 회음부 압박이 없는 편안한 복장으로 내원합니다.</li>
-            </ul>
-          </div>
-          <div className="rounded-2xl border border-[#E9E4DB] bg-white p-6 md:p-8">
-            <h4 className="text-base font-bold text-[#3E522D]">수술 후</h4>
-            <ul className="mt-4 space-y-3 text-sm leading-relaxed text-[#5C5C5C] break-keep">
-              <li>재생크림으로 통증 완화·진정·부종 제거를 돕습니다.</li>
-              <li>일주일 정도 항생제·소염제 처방이 있을 수 있습니다.</li>
-              <li>일주일 정도 따뜻한 물로 좌욕을 합니다.</li>
-              <li>일주일 후 내원하여 봉합사를 제거합니다.</li>
-              <li>2~3주 이후부터 탕목욕·성관계가 가능합니다.</li>
-            </ul>
+      {/* ── 소음순 착색 (5:7 비대칭 + 전후 갤러리) ── */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className={CONTAINER}>
+          <Reveal className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-16">
+            <div className="lg:col-span-5">
+              <Kicker>Pigmentation</Kicker>
+              <h2 className="mt-6 text-3xl font-bold leading-[1.15] tracking-tight text-[#1A1F16] lg:text-4xl break-keep">
+                소음순 착색
+              </h2>
+              <p className="mt-7 text-lg leading-loose text-[#4A5248] break-keep">
+                노화·마찰·질환 등으로 소음순 색이 짙어질 수 있습니다. 건강 이상이 아니더라도 성관계 시
+                자신감 저하나 심미적 불만으로 이어질 수 있으며, 소음순 미백으로 맑은 분홍빛 개선을
+                기대할 수 있습니다.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7">
+              <div className="flex flex-col items-center justify-center gap-6 rounded-[2rem] bg-[#F4F1EA] p-8 sm:flex-row lg:p-12">
+                <div className="flex flex-1 items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={TC("da3cd9238b934662991e4f32445f9136")}
+                    alt="착색된 소음순·대음순"
+                    className="h-auto max-h-72 w-auto max-w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <FlowArrow />
+                <div className="flex flex-1 items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={TC("de8c857e0e7e40ed82140ff4d3e20b9a")}
+                    alt="레이저 시술 후 개선"
+                    className="h-auto max-h-72 w-auto max-w-full object-contain"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 고민별 솔루션 ── */}
+      <section className="bg-[#FDFBF7] py-24 lg:py-32">
+        <div className={CONTAINER}>
+          <Reveal className="max-w-2xl">
+            <Kicker>Solutions</Kicker>
+            <h2 className="mt-6 text-3xl font-bold leading-[1.15] tracking-tight text-[#1A1F16] lg:text-4xl break-keep">
+              소음순 고민별 솔루션
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:mt-16">
+            <div className="rounded-[2rem] bg-white p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_16px_45px_rgb(0,0,0,0.10)] lg:p-12">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9BFA9]">
+                Solution 01
+              </p>
+              <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#1A1F16]">
+                레이저 소음순 성형
+              </h3>
+              <ul className="mt-8 space-y-4">
+                {["소음순 비대칭", "소음순 비대", "주름지거나 늘어진 소음순"].map((t) => (
+                  <li
+                    key={t}
+                    className="border-l-2 border-[#3E522D] pl-4 text-base leading-relaxed text-[#4A5248] break-keep">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-[2rem] bg-white p-10 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_16px_45px_rgb(0,0,0,0.10)] lg:p-12">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9BFA9]">
+                Solution 02
+              </p>
+              <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#1A1F16]">소음순 미백</h3>
+              <ul className="mt-8 space-y-4">
+                {["어두운 소음순", "잦은 마찰로 인한 착색", "호르몬·노화로 짙어진 색"].map((t) => (
+                  <li
+                    key={t}
+                    className="border-l-2 border-[#3E522D] pl-4 text-base leading-relaxed text-[#4A5248] break-keep">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* ── 수술 정보 (다크 프리미엄 밴드) ── */}
+      <section className="bg-white py-16 lg:py-20">
+        <div className={CONTAINER}>
+          <Reveal className="rounded-[2.5rem] bg-[#1A1F16] px-6 py-20 text-white lg:px-16 lg:py-28">
+            <div className="mx-auto max-w-3xl text-center">
+              <Kicker tone="gold">Surgery Info</Kicker>
+              <h2 className="mt-6 text-3xl font-bold tracking-tight text-white lg:text-4xl">
+                소음순 수술 정보
+              </h2>
+            </div>
+
+            <div className="mt-20">
+              <p className="text-center text-sm font-bold uppercase tracking-[0.2em] text-[#C9BFA9]">
+                레이저 클리어 소음순
+              </p>
+              <DiagramStrip
+                dark
+                alt="레이저 클리어 소음순"
+                ids={[
+                  "b0b029d8b612408cb6a17072bf9fa2fa",
+                  "5bd18dcad0f447d7ab992d4bdb91082e",
+                  "de8c857e0e7e40ed82140ff4d3e20b9a",
+                ]}
+              />
+              <SpecGrid
+                dark
+                items={[
+                  { label: "수술시간", value: "1시간" },
+                  { label: "마취방법", value: "국소마취" },
+                  { label: "회복기간", value: "1주일" },
+                  { label: "실밥제거", value: "없음" },
+                  { label: "금욕기간", value: "2~3주" },
+                ]}
+              />
+            </div>
+
+            <div className="mt-24">
+              <p className="text-center text-sm font-bold uppercase tracking-[0.2em] text-[#C9BFA9]">
+                미백효과
+              </p>
+              <DiagramStrip
+                dark
+                alt="소음순 미백 효과"
+                ids={[
+                  "4628ef214c1f4076a2a1476e684120ab",
+                  "a9d4a5937c7b41f28da7e70492516c8e",
+                  "32405f2f9cf64715bef2a518871b4ff6",
+                  "a9d4a5937c7b41f28da7e70492516c8e",
+                  "5a72fafc78ae42be943aa8a67dbc5066",
+                ]}
+              />
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 추천 대상 (4:8 비대칭 리스트) ── */}
+      <section className="bg-[#FDFBF7] py-24 lg:py-32">
+        <div className={CONTAINER}>
+          <Reveal className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+            <div className="lg:col-span-4">
+              <Kicker>Checklist</Kicker>
+              <h2 className="mt-6 text-3xl font-bold leading-[1.15] tracking-tight text-[#1A1F16] lg:text-4xl break-keep">
+                이런 분들에게<br className="hidden lg:block" /> 추천합니다
+              </h2>
+            </div>
+            <ul className="grid gap-x-12 gap-y-0 sm:grid-cols-2 lg:col-span-8">
+              {[
+                "소음순 모양이 부끄럽고 신경 쓰일 때",
+                "성관계 시 소음순이 말려들어가 아프거나 불편할 때",
+                "소음순 주름이 많아 신경 쓰일 때",
+                "질염·방광염 등 여성질환이 반복될 때",
+                "착색으로 성관계가 많은 것으로 오해받을까 걱정될 때",
+                "잦은 마찰로 어둡게 착색이 있는 분",
+                "호르몬 변화·노화로 색이 진해진 분",
+                "진한 소음순 색으로 자신감이 저하되었을 때",
+              ].map((t) => (
+                <li
+                  key={t}
+                  className="flex items-start gap-3 border-b border-[#E9E4DB]/70 py-5 text-base leading-relaxed text-[#4A5248] break-keep">
+                  <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3E522D]" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ── 수술 전 / 수술 후 ── */}
+      <section className="bg-white py-24 lg:py-32">
+        <div className={CONTAINER}>
+          <Reveal className="max-w-2xl">
+            <Kicker>Before &amp; After Care</Kicker>
+            <h2 className="mt-6 text-3xl font-bold leading-[1.15] tracking-tight text-[#1A1F16] lg:text-4xl break-keep">
+              수술 전후 관리
+            </h2>
+          </Reveal>
+
+          <div className="mt-14 grid gap-8 md:grid-cols-2 lg:mt-16">
+            <div className="rounded-[2rem] bg-[#FDFBF7] p-10 lg:p-12">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9BFA9]">Before</p>
+              <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#1A1F16]">수술 전</h3>
+              <ul className="mt-8 space-y-5">
+                {[
+                  "생리 주기에 맞춰 수술 일정을 조절합니다.",
+                  "수술 전날은 무리한 행동·음주를 삼가고 휴식을 취합니다.",
+                  "수술 당일에는 외음부 압박이 없는 편안한 복장으로 내원합니다.",
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="border-l-2 border-[#C9BFA9] pl-4 text-base leading-relaxed text-[#4A5248] break-keep">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="rounded-[2rem] bg-[#FDFBF7] p-10 lg:p-12">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#C9BFA9]">After</p>
+              <h3 className="mt-3 text-2xl font-bold tracking-tight text-[#1A1F16]">수술 후</h3>
+              <ul className="mt-8 space-y-5">
+                {[
+                  "재생크림으로 통증 완화·진정·부종 제거를 돕습니다.",
+                  "일주일 정도 항생제·소염제 처방이 있을 수 있습니다.",
+                  "일주일 정도 따뜻한 물로 좌욕을 합니다.",
+                  "일주일 후 내원하여 봉합사를 제거합니다.",
+                  "2~3주 이후부터 탕목욕·성관계가 가능합니다.",
+                ].map((t) => (
+                  <li
+                    key={t}
+                    className="border-l-2 border-[#C9BFA9] pl-4 text-base leading-relaxed text-[#4A5248] break-keep">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <p className="mx-auto mt-16 max-w-2xl text-center text-xs leading-relaxed text-[#A1A89A]">
+            시술·수술은 개인 해부·피부 상태에 따라 달라질 수 있습니다. 최종 계획은 면담 후
+            결정됩니다.
+          </p>
+        </div>
+      </section>
     </div>
   );
 }

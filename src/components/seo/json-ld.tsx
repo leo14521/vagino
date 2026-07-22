@@ -75,11 +75,13 @@ export function MedicalProcedureJsonLd({
   name,
   procedureType,
   description,
+  bodyLocation,
 }: {
   path: string;
   name: string;
   procedureType: string;
   description: string;
+  bodyLocation?: string;
 }) {
   const url = `${SITE_URL}${path.startsWith("/") ? path : `/${path}`}`;
   const data = {
@@ -89,6 +91,7 @@ export function MedicalProcedureJsonLd({
     name,
     procedureType,
     description,
+    ...(bodyLocation ? { bodyLocation } : {}),
     url,
     provider: { "@id": ORG_ID },
     inLanguage: "ko-KR",

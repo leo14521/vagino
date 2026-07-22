@@ -606,7 +606,7 @@ export function MonalisaPanel() {
             "성관계 시 감각 저하",
             "출산 후 질 이완·건조",
             "질 탄력은 개선하고 싶으나 수술은 부담",
-            "요실금 초기·회음부 미백 등 복합 고민",
+            "요실금 초기·외음부 미백 등 복합 고민",
           ].map((t) => (
             <li key={t} className="flex gap-2">
               <span className="text-[#3E522D]">✓</span>
@@ -925,9 +925,7 @@ export function LaserPageFooter() {
           </a>
         </div>
         <p className="mx-auto mt-10 max-w-3xl text-center text-[11px] leading-relaxed text-[#A1A89A]">
-          시술명·효과·부작용은 개인마다 다를 수 있습니다. 본 페이지의 이미지·문구는
-          트리니티여성의원(trinityclinic.co.kr) 공개 자료를 바탕으로 재구성하였으며, 최종 안내는 면담 시
-          이루어집니다.
+          시술명·효과·부작용은 개인마다 다를 수 있으며, 최종 안내는 면담 시 이루어집니다.
         </p>
       </div>
     </section>

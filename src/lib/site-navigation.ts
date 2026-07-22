@@ -1,6 +1,7 @@
 import {
   CLITORIS_ROUTES,
   FILLER_ROUTES,
+  HOME_ROUTE,
   LABIA_ROUTES,
   LASER_ROUTES,
   MINORA_ROUTES,
@@ -11,6 +12,7 @@ const OFFICIAL = "https://www.trinityclinic.co.kr";
 export type NavLink = {
   label: string;
   href: string;
+  /** true면 next/link 대신 <a> 사용 (외부 URL 또는 통합 사이트 다른 랜딩) */
   external?: boolean;
 };
 
@@ -37,9 +39,6 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
     label: "프리미엄 치료",
     items: [
       { label: "프리미엄 줄기세포", href: "https://trinitycell.netlify.app", external: true },
-      { label: "고주파 용해술", href: "https://trinityrfa.netlify.app", external: true },
-      { label: "질건조증 집중치료", href: "https://trinityrejuve.netlify.app", external: true },
-      { label: "비수술 난소낭종 경화술", href: "https://trinitycyst.netlify.app", external: true },
     ],
   },
   {
@@ -49,8 +48,8 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
       { label: "옵티멀하이푸", href: `${OFFICIAL}/sub/menu2-1`, external: true },
       { label: "자궁근종", href: `${OFFICIAL}/sub/menu2-2`, external: true },
       { label: "자궁선근증", href: `${OFFICIAL}/sub/menu2-3`, external: true },
-      { label: "자궁근종용해술", href: `${OFFICIAL}/sub/menu2-4`, external: true },
-      { label: "난소낭종경화술", href: `${OFFICIAL}/sub/menu2-5`, external: true },
+      { label: "자궁근종용해술", href: `${OFFICIAL}/sub/menu2-4/`, external: true },
+      { label: "난소낭종경화술", href: `${OFFICIAL}/sub/menu2-5/`, external: true },
       { label: "실비보험 청구서비스", href: `${OFFICIAL}/sub/menu2-6`, external: true },
     ],
   },
@@ -58,16 +57,19 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
     id: "women-surgery",
     label: "여성성형센터",
     items: [
-      { label: "질성형", href: "/" },
+      // 수술
+      { label: "질성형", href: HOME_ROUTE },
+      { label: "대음순수술", href: LABIA_ROUTES.surgery },
+      { label: "소음순수술", href: MINORA_ROUTES.hub },
+      { label: "음핵수술", href: LABIA_ROUTES.clitoris },
+      // 레이저
       { label: "질쎄라", href: LASER_ROUTES.zisella },
       { label: "모나리자터치", href: LASER_ROUTES.monalisa },
       { label: "리비브", href: LASER_ROUTES.revive },
-      { label: "대음순수술", href: LABIA_ROUTES.surgery },
-      { label: "회음부제모", href: LABIA_ROUTES.hairRemoval },
-      { label: "회음부미백", href: LABIA_ROUTES.whitening },
-      { label: "음핵수술", href: LABIA_ROUTES.clitoris },
-      { label: "소음순수술", href: MINORA_ROUTES.hub },
-      { label: "원더필", href: FILLER_ROUTES.hub },
+      // 시술 · 케어
+      { label: "질필러", href: FILLER_ROUTES.hub },
+      { label: "외음부미백", href: LABIA_ROUTES.whitening },
+      { label: "외음부제모", href: LABIA_ROUTES.hairRemoval },
     ],
   },
   {
@@ -107,7 +109,7 @@ export const TRINITY_NAV_CATEGORIES: NavCategory[] = [
 
 /** 헤더에 항상 노출하는 여성성형센터 바로가기 */
 export const WOMEN_SURGERY_QUICK_LINKS = [
-  { label: "질성형", href: "/", match: "women" as const },
+  { label: "질성형", href: HOME_ROUTE, match: "women" as const },
   { label: "질레이저", href: LASER_ROUTES.hub, match: "laser" as const },
   { label: "대음순수술", href: LABIA_ROUTES.hub, match: "labia" as const },
   { label: "소음순수술", href: MINORA_ROUTES.hub, match: "minora" as const },
@@ -116,43 +118,39 @@ export const WOMEN_SURGERY_QUICK_LINKS = [
 
 export type WomenQuickLinkMatch = (typeof WOMEN_SURGERY_QUICK_LINKS)[number]["match"];
 
-export function resolveActiveWomenLink(pathname: string, tab: string | null): WomenQuickLinkMatch | null {
-  if (pathname === "/women" || pathname === "/") return "women";
-  if (pathname === "/laser") return "laser";
-  if (pathname.startsWith("/labia") || pathname === "/perineum") {
-    return "labia";
-  }
-  if (pathname.startsWith("/minora")) return "minora";
-  if (pathname.startsWith("/filler")) return "filler";
-  if (pathname.startsWith("/perineum") && tab === "minora") return "minora";
+export function resolveActiveWomenLink(pathname: string): WomenQuickLinkMatch | null {
+  if (pathname === "/menu3-1" || pathname === "/women" || pathname === "/") return "women";
+  if (pathname.startsWith("/menu3-4")) return "laser";
+  if (pathname.startsWith("/menu3-3") || pathname === "/perineum") return "labia";
+  if (pathname.startsWith("/menu3-2")) return "minora";
+  if (pathname.startsWith("/menu3-5")) return "filler";
   return null;
 }
 
-export function resolveActiveNavCategory(pathname: string, tab: string | null): string {
-  const women = resolveActiveWomenLink(pathname, tab);
+export function resolveActiveNavCategory(pathname: string): string {
+  const women = resolveActiveWomenLink(pathname);
   if (women) return "women-surgery";
   return "";
 }
 
-export function isWomenSurgeryNavLinkActive(
-  item: NavLink,
-  pathname: string,
-  tab: string | null
-): boolean {
+function normalizePath(pathname: string) {
+  return pathname.endsWith("/") && pathname.length > 1 ? pathname.slice(0, -1) : pathname;
+}
+
+export function isWomenSurgeryNavLinkActive(item: NavLink, pathname: string): boolean {
   if (item.external) return false;
-  if (item.href === "/" && (pathname === "/" || pathname === "/women")) return true;
-  if (item.href === LASER_ROUTES.hub && pathname === "/laser" && !tab) return true;
-  if (item.href === LASER_ROUTES.monalisa && pathname === "/laser" && tab === "monalisa") return true;
-  if (item.href === LASER_ROUTES.revive && pathname === "/laser" && tab === "revive") return true;
-  if (item.href === LABIA_ROUTES.surgery && pathname.startsWith("/labia") && (!tab || tab === "labia"))
+  const path = normalizePath(pathname);
+
+  if (item.href === HOME_ROUTE && (path === HOME_ROUTE || path === "/" || path === "/women"))
     return true;
-  if (item.href === LABIA_ROUTES.hairRemoval && pathname.startsWith("/labia") && tab === "hair-removal")
-    return true;
-  if (item.href === LABIA_ROUTES.whitening && pathname.startsWith("/labia") && tab === "whitening")
-    return true;
-  if (item.href === LABIA_ROUTES.clitoris && pathname.startsWith("/labia") && tab === "clitoris")
-    return true;
-  if (item.href === MINORA_ROUTES.hub && pathname.startsWith("/minora")) return true;
-  if (item.href === FILLER_ROUTES.hub && pathname.startsWith("/filler")) return true;
+  if (item.href === LASER_ROUTES.zisella && path === LASER_ROUTES.zisella) return true;
+  if (item.href === LASER_ROUTES.monalisa && path === LASER_ROUTES.monalisa) return true;
+  if (item.href === LASER_ROUTES.revive && path === LASER_ROUTES.revive) return true;
+  if (item.href === LABIA_ROUTES.surgery && path === LABIA_ROUTES.surgery) return true;
+  if (item.href === LABIA_ROUTES.hairRemoval && path === LABIA_ROUTES.hairRemoval) return true;
+  if (item.href === LABIA_ROUTES.whitening && path === LABIA_ROUTES.whitening) return true;
+  if (item.href === LABIA_ROUTES.clitoris && path === LABIA_ROUTES.clitoris) return true;
+  if (item.href === MINORA_ROUTES.hub && path.startsWith(MINORA_ROUTES.hub)) return true;
+  if (item.href === FILLER_ROUTES.hub && path.startsWith(FILLER_ROUTES.hub)) return true;
   return false;
 }

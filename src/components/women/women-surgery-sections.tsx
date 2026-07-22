@@ -11,6 +11,7 @@ import { FAQSection } from "@/components/sections/faq-section";
 import { WomenClinicalInfographicSection } from "@/components/women/women-clinical-infographic-section";
 import { WomenAeoSection } from "@/components/women/women-aeo-section";
 import { FacilityTour } from "@/components/home/FacilityTour";
+import { TrinityCredentialsSection } from "@/components/sections/trinity-credentials-section";
 import { ConsultationSection } from "@/components/sections/consultation-section";
 
 /** 질성형 메인 랜딩 `/` */
@@ -48,6 +49,7 @@ export function WomenSurgerySections() {
       </div>
       <WomenAeoSection />
       <FacilityTour />
+      <TrinityCredentialsSection />
       <div id="consultation" className="scroll-mt-28">
         <ConsultationSection />
       </div>

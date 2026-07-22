@@ -1,6 +1,6 @@
-import { permanentRedirect } from "next/navigation";
+import { LegacyRedirect } from "@/components/legacy-redirect";
 import { LABIA_ROUTES } from "@/lib/site";
 
 export default function PerineumLabiaLegacyRedirect() {
-  permanentRedirect(LABIA_ROUTES.surgery);
+  return <LegacyRedirect to={LABIA_ROUTES.surgery} />;
 }

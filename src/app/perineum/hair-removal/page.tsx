@@ -1,6 +1,6 @@
-import { permanentRedirect } from "next/navigation";
+import { LegacyRedirect } from "@/components/legacy-redirect";
 import { LABIA_ROUTES } from "@/lib/site";
 
 export default function PerineumHairRemovalLegacyRedirect() {
-  permanentRedirect(LABIA_ROUTES.hairRemoval);
+  return <LegacyRedirect to={LABIA_ROUTES.hairRemoval} />;
 }

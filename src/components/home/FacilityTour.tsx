@@ -2,7 +2,8 @@
 
 import { useState, useRef, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { cn } from "@/lib/utils"; // utils 파일이 없다면 생략하고 className에 직접 작성 가능
+import { cn } from "@/lib/utils";
+import { publicAsset } from "@/lib/site";
 
 // 투어 단계 데이터 (내용 수정은 여기서 하세요)
 // src/components/home/FacilityTour.tsx 내부 수정
@@ -15,7 +16,7 @@ const TOUR_STEPS = [
     desc: "트리니티에 오신 것을 환영합니다.\n들어오시는 순간부터 청결하고 쾌적한 환경을 약속드립니다.",
     label: "01. Entrance",
     // 👇 점(.)을 빼고 /images/... 로 수정했습니다.
-    imgSrc: "/images/tour-entrance.webp", 
+    imgSrc: publicAsset("/images/tour-entrance.webp"),
     fallbackSrc: "https://images.unsplash.com/photo-1519494080410-4f1e3ee27fa2"
   },
   {
@@ -24,7 +25,7 @@ const TOUR_STEPS = [
     imageAlt: "강남 트리니티여성의원 질축소수술 예약·접수 안내 데스크",
     desc: "전문 코디네이터의 안내로 대기 시간을 최소화합니다.\n예약 확인부터 접수까지 빠르고 친절하게 도와드립니다.",
     label: "02. Reception",
-    imgSrc: "/images/tour-desk.webp",
+    imgSrc: publicAsset("/images/tour-desk.webp"),
     fallbackSrc: "https://images.unsplash.com/photo-1504439468489-c8920d796a29"
   },
   {
@@ -33,7 +34,7 @@ const TOUR_STEPS = [
     imageAlt: "이쁜이수술 상담 전 이용하는 프라이빗 전용 대기실",
     desc: "진료를 기다리는 시간조차 휴식이 되도록,\n넓은 좌석과 따뜻한 조명으로 안락함을 더했습니다.",
     label: "03. Lounge",
-    imgSrc: "/images/tour-lounge.webp",
+    imgSrc: publicAsset("/images/tour-lounge.webp"),
     fallbackSrc: "https://images.unsplash.com/photo-1600607686527-6fb886090705"
   },
   {
@@ -42,7 +43,7 @@ const TOUR_STEPS = [
     imageAlt: "강남 트리니티여성의원 질축소수술 전용 상담실",
     desc: "단순한 문진을 넘어 환자의 삶을 이해하는 공간입니다.\n1:1 프라이빗 공간에서 깊이 있는 상담이 이루어집니다.",
     label: "04. Consulting Room",
-    imgSrc: "/images/tour-consult.webp",
+    imgSrc: publicAsset("/images/tour-consult.webp"),
     fallbackSrc: "https://images.unsplash.com/photo-1631217868264-e5b90bb7e133"
   },
   {
@@ -51,7 +52,7 @@ const TOUR_STEPS = [
     imageAlt: "질축소수술 전 골반기저근·질벽 상태를 확인하는 정밀 초음파실",
     desc: "대학병원급 하이엔드 장비로 병변을 입체적으로 분석합니다.\n모니터를 함께 보며 현재 상태를 명확히 설명해 드립니다.",
     label: "05. Ultra-Sound",
-    imgSrc: "/images/tour-ultra.webp",
+    imgSrc: publicAsset("/images/tour-ultra.webp"),
     fallbackSrc: "https://images.unsplash.com/photo-1579684385127-1ef15d508118"
   },
   {
@@ -60,7 +61,7 @@ const TOUR_STEPS = [
     imageAlt: "이쁜이수술 1:1 프라이빗 VIP 회복실",
     desc: "시술 후 호텔급 침구에서 편안하게 휴식을 취하세요.\n전담 간호사가 퇴원 시까지 세심하게 케어합니다.",
     label: "06. Recovery Room",
-    imgSrc: "/images/tour-recovery.webp",
+    imgSrc: publicAsset("/images/tour-recovery.webp"),
     fallbackSrc: "https://images.unsplash.com/photo-1512918760513-95f192972701"
   },
 ];

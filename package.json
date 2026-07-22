@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build && node scripts/relativize-out-assets.mjs",
+    "preview": "npm run build && node scripts/assemble-preview.mjs && npx -y serve preview -l 5000",
+    "stage:menu2": "node scripts/stage-menu2-landings.mjs",
+    "deploy": "node scripts/deploy-integrated.mjs",
     "start": "next start",
     "lint": "eslint"
   },

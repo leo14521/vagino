@@ -1,6 +1,6 @@
-import { permanentRedirect } from "next/navigation";
+import { LegacyRedirect } from "@/components/legacy-redirect";
 import { MINORA_ROUTES } from "@/lib/site";
 
 export default function PerineumMinoraLegacyRedirect() {
-  permanentRedirect(MINORA_ROUTES.hub);
+  return <LegacyRedirect to={MINORA_ROUTES.hub} />;
 }

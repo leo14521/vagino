@@ -1,0 +1,127 @@
+/* Trinity SEO/AEO — 헤스티아 .hestia-aeo-area 패턴 기반 */
+.trinity-aeo-area {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.25rem 2rem;
+  border-top: 1px solid rgba(233, 228, 219, 0.65);
+  background: #fdfcfb;
+}
+
+.trinity-aeo-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  max-width: 20rem;
+  margin: 0 auto;
+  padding: 0.65rem 1.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: #5b6d4a;
+  background: #fff;
+  border: 1px solid #e9e4db;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.trinity-aeo-toggle:hover,
+.trinity-aeo-toggle:focus-visible {
+  color: #3e522d;
+  border-color: #a2ad91;
+  background: #f1f4ed;
+  outline: none;
+}
+
+.trinity-aeo-toggle__icon {
+  display: inline-block;
+  font-size: 0.625rem;
+  transition: transform 0.25s ease;
+}
+
+.trinity-aeo-area.is-open .trinity-aeo-toggle__icon {
+  transform: rotate(180deg);
+}
+
+.trinity-aeo-content {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed #e9e4db;
+  color: #5c5c5c;
+  font-size: 0.9375rem;
+  line-height: 1.75;
+}
+
+.trinity-aeo-content[hidden] {
+  display: none !important;
+}
+
+.trinity-aeo-content h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1a1f16;
+  margin: 0 0 0.75rem;
+  line-height: 1.4;
+}
+
+.trinity-aeo-content h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3e522d;
+  margin: 1.25rem 0 0.5rem;
+  line-height: 1.45;
+}
+
+.trinity-aeo-content p {
+  margin: 0 0 0.75rem;
+}
+
+.trinity-aeo-content ul {
+  margin: 0 0 1rem 1.1rem;
+  padding: 0;
+}
+
+.trinity-aeo-content li {
+  margin-bottom: 0.35rem;
+}
+
+.trinity-aeo-faq {
+  margin-top: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.trinity-aeo-faq details {
+  border: 1px solid #e9e4db;
+  border-radius: 0.75rem;
+  background: #fff;
+  overflow: hidden;
+}
+
+.trinity-aeo-faq summary {
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: #1a1f16;
+  cursor: pointer;
+  list-style: none;
+}
+
+.trinity-aeo-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.trinity-aeo-faq details[open] summary {
+  border-bottom: 1px solid #f1f4ed;
+  color: #3e522d;
+}
+
+.trinity-aeo-faq details p {
+  padding: 0 1rem 0.9rem;
+  margin: 0;
+  font-size: 0.875rem;
+  color: #6b7562;
+}

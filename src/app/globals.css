@@ -10,35 +10,35 @@
     --foreground: 120 10% 10%;
     --font-sans: "Pretendard JP", "Pretendard", system-ui, sans-serif;
     --font-display: "Pretendard JP", "Pretendard", system-ui, sans-serif;
-    
+
     --card: 0 0% 100%;
     --card-foreground: 120 10% 10%;
- 
+
     --popover: 0 0% 100%;
     --popover-foreground: 120 10% 10%;
- 
+
     --primary: 84 29% 25%; /* #3E522D */
     --primary-foreground: 0 0% 100%;
- 
+
     --secondary: 33 40% 93%; /* #F4EBE2 */
     --secondary-foreground: 120 10% 10%;
- 
+
     --muted: 0 0% 98%;
     --muted-foreground: 120 5% 40%;
- 
+
     --accent: 37 47% 58%; /* #C5A065 */
     --accent-foreground: 0 0% 100%;
- 
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 30 10% 90%;
     --input: 30 10% 90%;
     --ring: 84 29% 25%;
- 
+
     --radius: 1rem;
   }
- 
+
   .dark {
     /* 다크모드 대응을 위한 변수 (필요시 확장) */
     --background: 120 10% 10%;
@@ -54,7 +54,9 @@
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-sans);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
   }
 
   h1,
@@ -65,24 +67,24 @@
   h6 {
     font-family: var(--font-sans);
   }
-  
+
   /* 부드러운 스크롤을 위한 html 설정 */
   html.lenis {
     height: auto;
   }
-  
+
   .lenis.lenis-smooth {
     scroll-behavior: auto;
   }
-  
+
   .lenis.lenis-smooth [data-lenis-prevent] {
     overscroll-behavior: contain;
   }
-  
+
   .lenis.lenis-stopped {
     overflow: hidden;
   }
-  
+
   .lenis.lenis-scrolling iframe {
     pointer-events: none;
   }
@@ -121,15 +123,15 @@
   .text-9xl {
     font-family: var(--font-sans);
   }
-  
+
   /* 텍스트 강조 밑줄 효과 */
   .text-underline-point {
     position: relative;
     display: inline-block;
   }
-  
+
   .text-underline-point::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 2px;
     left: 0;
@@ -144,7 +146,7 @@
   .glass {
     @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-sm;
   }
-  
+
   .glass-dark {
     @apply bg-black/30 backdrop-blur-md border border-white/10 shadow-sm;
   }
@@ -241,7 +243,9 @@
   }
 
   .anatomy-grid-bg {
-    background-image: linear-gradient(#333 1px, transparent 1px), linear-gradient(90deg, #333 1px, transparent 1px);
+    background-image:
+      linear-gradient(#333 1px, transparent 1px),
+      linear-gradient(90deg, #333 1px, transparent 1px);
     background-size: 40px 40px;
   }
 
@@ -251,5 +255,145 @@
 
   .anatomy-wall--after {
     background-color: #d15c5c;
+  }
+}
+
+/* ==========================================================================
+   landing-1(자궁근종용해술) 원본 헤더/드롭다운/모바일 nav 스타일 1:1 복제
+   (site-header.tsx / footer.tsx 의 원본 클래스·ID와 매칭)
+   ========================================================================== */
+
+/* 세리프 워드마크 (푸터 "Trinity" 등) */
+.serif {
+  font-family: "Noto Serif KR", serif;
+}
+
+/* 사이트 헤더 — landing-2는 밝은 히어로 위에 얹히므로 항상 불투명(크림+진한 글씨)으로 유지.
+   (landing-1은 어두운 히어로라 투명+흰 글씨였지만, 여기선 최상단에서도 메뉴가 보이도록 함) */
+#site-header #mobile-menu-btn.site-menu-btn {
+  display: flex !important;
+}
+
+body:has(#site-header #mobile-menu-btn) .tg-hamburger {
+  display: none !important;
+}
+
+#site-header {
+  background-color: rgba(253, 252, 251, 0.96);
+  border-bottom: 1px solid rgba(233, 228, 219, 0.8);
+  transition:
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+#site-header.is-scrolled {
+  box-shadow: 0 4px 24px rgba(26, 31, 22, 0.06);
+  backdrop-filter: blur(12px);
+}
+.site-nav-item:hover .site-nav-dropdown,
+.site-nav-item:focus-within .site-nav-dropdown {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.site-nav-dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    visibility 0.2s;
+}
+#mobile-nav-panel {
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease,
+    visibility 0.25s;
+}
+#mobile-nav-panel.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+#mobile-nav-backdrop {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s;
+}
+#mobile-nav-backdrop.is-open {
+  opacity: 1;
+  visibility: visible;
+}
+#site-header.menu-open,
+#site-header.menu-open.is-scrolled {
+  background-color: rgba(253, 252, 251, 0.98);
+  border-color: rgba(233, 228, 219, 0.8);
+  backdrop-filter: blur(12px);
+}
+#site-header.menu-open .site-nav-link,
+#site-header.menu-open .site-menu-btn {
+  color: #1a1f16;
+  border-color: rgba(233, 228, 219, 0.9);
+}
+#site-header.menu-open .site-header-logo img {
+  filter: none;
+  opacity: 1;
+}
+.mobile-nav-group summary {
+  list-style: none;
+}
+.mobile-nav-group summary::-webkit-details-marker {
+  display: none;
+}
+.mobile-nav-group[open] .mobile-nav-chevron {
+  transform: rotate(180deg);
+}
+
+/* ==========================================================================
+   스크롤 리빌 / 진입 애니메이션 (Reveal, hero)
+   ========================================================================== */
+@keyframes trinity-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* IntersectionObserver 기반 Reveal 컴포넌트용 */
+.trinity-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.trinity-reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* 히어로 등 첫 화면 요소는 로드 즉시 재생 */
+.trinity-animate-hero {
+  animation: trinity-fade-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trinity-reveal,
+  .trinity-animate-hero {
+    opacity: 1;
+    transform: none;
+    transition: none;
+    animation: none;
   }
 }

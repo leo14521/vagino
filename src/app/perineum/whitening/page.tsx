@@ -1,6 +1,6 @@
-import { permanentRedirect } from "next/navigation";
+import { LegacyRedirect } from "@/components/legacy-redirect";
 import { LABIA_ROUTES } from "@/lib/site";
 
 export default function PerineumWhiteningLegacyRedirect() {
-  permanentRedirect(LABIA_ROUTES.whitening);
+  return <LegacyRedirect to={LABIA_ROUTES.whitening} />;
 }

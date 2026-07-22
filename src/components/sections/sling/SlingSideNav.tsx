@@ -77,7 +77,7 @@ export function SlingSideNav() {
 
       <div className="lg:hidden fixed top-6 right-6 z-50 flex items-center gap-3">
         <Link
-          href="/"
+          href="/menu3-1/"
           className="text-[10px] font-bold text-[#3E522D] uppercase tracking-wider"
         >
           질성형
@@ -122,7 +122,7 @@ export function SlingSideNav() {
               ))}
               <li>
                 <Link
-                  href="/"
+                  href="/menu3-1/"
                   className="text-lg text-white/60 hover:text-[#C5A065]"
                 >
                   질성형 수술 페이지 →

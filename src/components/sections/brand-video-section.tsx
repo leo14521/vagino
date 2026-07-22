@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState, useEffect } from "react";
-import { BRAND_FILM_VIDEO_SRC } from "@/lib/site";
+import { BRAND_FILM_VIDEO_SRC, withBasePathOnce } from "@/lib/site";
 import { Play, Pause, Volume2, VolumeX } from "lucide-react";
 
 export function BrandVideoSection() {
@@ -54,7 +54,7 @@ export function BrandVideoSection() {
           muted
           loop
         >
-          <source src={BRAND_FILM_VIDEO_SRC} type="video/mp4" />
+          <source src={withBasePathOnce(BRAND_FILM_VIDEO_SRC)} type="video/mp4" />
           브라우저가 비디오 태그를 지원하지 않습니다.
         </video>
         

@@ -8,6 +8,7 @@ import { SlingComparisonSection } from "@/components/sections/sling/SlingCompari
 import { SlingProcedureSection } from "@/components/sections/sling/SlingProcedureSection";
 import { SlingFAQSection } from "@/components/sections/sling/SlingFAQSection";
 import { ConsultationSection } from "@/components/sections/consultation-section";
+import { LandingSeo } from "@/components/seo/landing-seo";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
 const path = "/sling";
@@ -50,8 +51,10 @@ export default function SlingPage() {
         <SlingFAQSection />
       </div>
       <div id="consultation">
-        <ConsultationSection />
+        <ConsultationSection category="갱년기·요실금클리닉" />
       </div>
+
+      <LandingSeo topicId="sling" path={path} procedureType="SurgicalProcedure" />
     </main>
   );
 }

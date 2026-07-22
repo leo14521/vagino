@@ -2,7 +2,7 @@
 "use client";
 
 import { Phone, MousePointer2, CalendarCheck, MessageCircle } from "lucide-react";
-import { NAVER_BOOKING_URL } from "@/lib/site";
+import { NAVER_BOOKING_URL, NAVER_TALK_URL } from "@/lib/site";
 
 export default function FloatingBanner() {
   return (
@@ -26,7 +26,7 @@ export default function FloatingBanner() {
 
         {/* 네이버 톡톡 */}
         <a
-          href="https://talk.naver.com/profile/w4tsxu"
+          href={NAVER_TALK_URL}
           target="_blank"
           rel="noopener"
           className="flex items-center gap-3 pl-4 pr-1 py-1 bg-white border border-[#03C75A]/20 rounded-full shadow-lg hover:shadow-xl group overflow-hidden w-[180px] hover:w-[190px] transition-all duration-300"
@@ -89,7 +89,7 @@ export default function FloatingBanner() {
 
           {/* 네이버 톡톡 */}
           <a
-            href="https://talk.naver.com/profile/w4tsxu"
+            href={NAVER_TALK_URL}
             target="_blank"
             rel="noopener"
             className="flex flex-col items-center justify-center gap-1 active:bg-gray-50 border-r border-[#E9E4DB]/50"

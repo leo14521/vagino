@@ -1,3 +1,5 @@
+import { publicAsset } from "@/lib/site";
+
 export const WOMEN_SURGERY_FACTS = [
   { label: "수술시간", value: "30~60분", icon: "clock" as const },
   { label: "마취", value: "수면·국소", icon: "syringe" as const },
@@ -48,19 +50,19 @@ export const WOMEN_SURGERY_SEO_ALT =
 /** 카드뉴스 원본에서 추출한 해부 Before/After 일러스트 */
 export const WOMEN_ANATOMY_IMAGES = {
   comparison: {
-    src: "/images/women/anatomy-comparison.webp",
+    src: publicAsset("/images/women/anatomy-comparison.webp"),
     alt: "질성형수술(이쁜이수술·질축소수술) 전후 해부 비교 — 이완된 질 점막과 골반기저근 탄력 복원",
     width: 880,
     height: 310,
   },
   before: {
-    src: "/images/women/anatomy-before.webp",
+    src: publicAsset("/images/women/anatomy-before.webp"),
     alt: "질축소수술 전 골반 단면 — 늘어진 질벽과 이완된 골반기저근",
     width: 400,
     height: 310,
   },
   after: {
-    src: "/images/women/anatomy-after.webp",
+    src: publicAsset("/images/women/anatomy-after.webp"),
     alt: "질성형수술 후 골반 단면 — 수축된 질 근육과 촘촘해진 질벽",
     width: 400,
     height: 310,

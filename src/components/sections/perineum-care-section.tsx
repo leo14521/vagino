@@ -1,13 +1,11 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 import { ArrowDown, ArrowRight, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { PerineumClitorisSection } from "@/components/sections/perineum-clitoris-section";
-import { LABIA_ROUTES } from "@/lib/site";
+import { LabiaTabNav } from "@/components/navigation/labia-tab-nav";
+import { LABIA_TAB_LABELS, type LabiaTabId } from "@/lib/seo/labia-pages";
 
 const TC = (id: string) =>
   `https://www.trinityclinic.co.kr/trinity/file/IMAGE/uu/${id}`;
@@ -27,26 +25,7 @@ function TcImg({ id, alt }: { id: string; alt: string }) {
   );
 }
 
-const TABS = [
-  { id: "labia" as const, label: "대음순수술", href: LABIA_ROUTES.surgery },
-  { id: "hair-removal" as const, label: "회음부 제모", href: LABIA_ROUTES.hairRemoval },
-  { id: "whitening" as const, label: "회음부 미백", href: LABIA_ROUTES.whitening },
-  { id: "clitoris" as const, label: "음핵수술", href: LABIA_ROUTES.clitoris },
-];
-
-type TabId = (typeof TABS)[number]["id"];
-
-type SearchParamsLike = Pick<URLSearchParams, "get">;
-
-function tabFromSearchParams(sp: SearchParamsLike): TabId {
-  const raw = sp.get("tab");
-  if (raw === "labia" || raw === "hair-removal" || raw === "whitening" || raw === "clitoris") return raw;
-  if (raw === "laser") return "hair-removal";
-  if (raw === "whiten") return "whitening";
-  return "labia";
-}
-
-/** 회음부 미백: 저해상도 삽화 대신 미니멀 UI */
+/** 외음부 미백: 저해상도 삽화 대신 미니멀 UI */
 function PerineumWhiteningProcess() {
   return (
     <div className="rounded-[2rem] border border-[#E9E4DB]/90 bg-[#FDFCFB] p-6 shadow-sm md:p-10">
@@ -58,7 +37,7 @@ function PerineumWhiteningProcess() {
             색소 침착이 신경 쓰이는 경우
           </h4>
           <p className="mt-3 text-sm leading-relaxed text-[#6B6560] break-keep">
-            소음순·대음순 등 회음부 라인은 마찰·호르몬·노화에 따라 톤이 어두워질 수 있습니다.
+            소음순·대음순 등 외음부 라인은 마찰·호르몬·노화에 따라 톤이 어두워질 수 있습니다.
           </p>
           <div className="relative mt-6 flex min-h-[140px] flex-1 items-center justify-center overflow-hidden rounded-xl bg-[#EDE4DC]">
             <div
@@ -101,7 +80,7 @@ function PerineumWhiteningProcess() {
             맞춤 프로그램으로 톤·결 개선
           </h4>
           <p className="mt-3 text-sm leading-relaxed text-[#5C5C5C] break-keep">
-            트리니티 회음부 미백 프로그램 — 레이저 미백·박피, 필요 시 절개까지 상태에 따라 단계적으로
+            트리니티 외음부 미백 프로그램 — 레이저 미백·박피, 필요 시 절개까지 상태에 따라 단계적으로
             안내합니다.
           </p>
           <div className="relative mt-6 flex min-h-[140px] flex-1 items-center justify-center overflow-hidden rounded-xl bg-[#F5EBE3]">
@@ -134,62 +113,17 @@ function PerineumWhiteningProcess() {
   );
 }
 
-export function LabiaCareSection() {
-  const searchParams = useSearchParams();
-  const tab = useMemo(() => tabFromSearchParams(searchParams), [searchParams]);
-
+export function LabiaCareSection({ activeTab }: { activeTab: LabiaTabId }) {
   return (
     <section
       id="labia-care"
       className="scroll-mt-28 border-y border-[#E9E4DB]/70 bg-[#F6F3EE] py-16 md:py-24 lg:py-28"
     >
       <div className="container mx-auto max-w-6xl px-4 md:px-6">
-        <nav aria-label="breadcrumb" className="mb-8 text-center text-sm text-[#6B7264]">
-          <ol className="inline-flex flex-wrap items-center justify-center gap-1.5">
-            <li>
-              <Link href={LABIA_ROUTES.hub} className="hover:text-[#3E522D] hover:underline">
-                대음순수술
-              </Link>
-            </li>
-            <li aria-hidden className="text-[#C4C0B8]">
-              /
-            </li>
-            <li className="font-semibold text-[#1A1F16]" aria-current="page">
-              {TABS.find((t) => t.id === tab)?.label}
-            </li>
-          </ol>
-        </nav>
+        <LabiaTabNav currentLabel={LABIA_TAB_LABELS[activeTab]} />
 
-        <div
-          className="mb-10 grid max-w-lg grid-cols-2 gap-2 mx-auto sm:max-w-2xl md:mx-0 md:flex md:max-w-none md:flex-wrap md:justify-center"
-          role="tablist"
-          aria-label="대음순 케어 종류"
-        >
-          {TABS.map((t) => {
-            const on = tab === t.id;
-            return (
-              <Link
-                key={t.id}
-                href={t.href}
-                scroll={false}
-                prefetch
-                role="tab"
-                aria-selected={on}
-                className={cn(
-                  "rounded-full px-4 py-2.5 text-center text-[13px] font-bold transition-all md:px-8 md:py-3 md:text-base",
-                  on
-                    ? "bg-[#3E522D] text-white shadow-md"
-                    : "border border-[#E9E4DB] bg-white text-[#6B7264] hover:border-[#3E522D]/35"
-                )}
-              >
-                {t.label}
-              </Link>
-            );
-          })}
-        </div>
-
-        <div key={tab} role="tabpanel" className="space-y-12 md:space-y-16">
-            {tab === "labia" && (
+        <div key={activeTab} role="tabpanel" className="space-y-12 md:space-y-16">
+            {activeTab === "labia" && (
               <>
                 <div className="mx-auto max-w-3xl text-center">
                   <h3 className="text-xl font-bold leading-snug text-[#1A1F16] md:text-2xl break-keep">
@@ -314,15 +248,15 @@ export function LabiaCareSection() {
               </>
             )}
 
-            {tab === "hair-removal" && (
+            {activeTab === "hair-removal" && (
               <>
                 <div className="mx-auto max-w-3xl text-center">
                   <h3 className="text-xl font-bold text-[#1A1F16] md:text-2xl break-keep">
                     여성의료진 · 전용 공간 · 첨단 레이저
                   </h3>
-                  <p className="mt-2 text-sm font-semibold text-[#3E522D]">회음부 제모</p>
+                  <p className="mt-2 text-sm font-semibold text-[#3E522D]">외음부 제모</p>
                   <p className="mt-5 text-sm leading-relaxed text-[#555D4E] md:text-base break-keep">
-                    위생과 심미를 함께 챙기는 회음부 제모. 피부 자극은 낮추고 제모 효과는 높이는
+                    위생과 심미를 함께 챙기는 외음부 제모. 피부 자극은 낮추고 제모 효과는 높이는
                     방향으로 시술을 설계합니다.
                   </p>
                 </div>
@@ -342,7 +276,7 @@ export function LabiaCareSection() {
                 </div>
 
                 <div className="rounded-3xl bg-[#2E3A30] px-6 py-12 text-white">
-                  <h4 className="text-center text-xl font-bold text-[#E8E4DC]">회음부 제모 종류</h4>
+                  <h4 className="text-center text-xl font-bold text-[#E8E4DC]">외음부 제모 종류</h4>
                   <div className="mt-10 grid gap-8 md:grid-cols-3">
                     {[
                       {
@@ -399,15 +333,15 @@ export function LabiaCareSection() {
               </>
             )}
 
-            {tab === "whitening" && (
+            {activeTab === "whitening" && (
               <>
                 <div className="mx-auto max-w-3xl text-center">
                   <h3 className="text-xl font-bold text-[#1A1F16] md:text-2xl break-keep">
                     심미적 만족도를 높여 보세요
                   </h3>
-                  <p className="mt-2 text-sm font-semibold text-[#3E522D]">회음부 미백</p>
+                  <p className="mt-2 text-sm font-semibold text-[#3E522D]">외음부 미백</p>
                   <p className="mt-5 text-sm leading-relaxed text-[#555D4E] md:text-base break-keep">
-                    임신·출산, 마찰, 노화로 어두워진 회음부는 자신감에 영향을 줄 수 있습니다. 멜라닌
+                    임신·출산, 마찰, 노화로 어두워진 외음부는 자신감에 영향을 줄 수 있습니다. 멜라닌
                     색소에 작용하는 레이저·박피, 필요 시 절개 등{" "}
                     <strong className="text-[#1A1F16]">프로그램을 개인 상태에 맞게</strong> 안내합니다.
                   </p>
@@ -417,7 +351,7 @@ export function LabiaCareSection() {
 
                 <div className="rounded-3xl bg-[#2E3A30] px-6 py-10 text-white md:px-12">
                   <h4 className="text-center text-xl font-bold text-[#E8E4DC]">
-                    트리니티 회음부 미백 프로그램
+                    트리니티 외음부 미백 프로그램
                   </h4>
                   <p className="mx-auto mt-4 max-w-3xl text-center text-sm leading-relaxed text-[#D0CBC4] break-keep">
                     <strong className="text-[#E8D4C4]">레이저 미백술</strong>은 색소 침착 부위에 레이저를
@@ -540,12 +474,11 @@ export function LabiaCareSection() {
               </>
             )}
 
-            {tab === "clitoris" && <PerineumClitorisSection />}
+            {activeTab === "clitoris" && <PerineumClitorisSection />}
         </div>
 
         <p className="mx-auto mt-12 max-w-2xl text-center text-[11px] leading-relaxed text-[#A1A89A]">
-          시술·수술은 개인 해부·피부 상태에 따라 달라질 수 있습니다. 본문의 이미지·설명은
-          트리니티여성의원 공개 자료를 참고하였으며, 최종 계획은 면담 후 결정됩니다.
+          시술·수술은 개인 해부·피부 상태에 따라 달라질 수 있으며, 최종 계획은 면담 후 결정됩니다.
         </p>
       </div>
     </section>

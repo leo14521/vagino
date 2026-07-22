@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import { SITE_NAME, SITE_URL } from "@/lib/site";
+import { HOME_ROUTE, SITE_NAME, SITE_URL } from "@/lib/site";
 
-export const WOMEN_HOME_PATH = "/" as const;
-export const WOMEN_HOME_CANONICAL = SITE_URL;
+export const WOMEN_HOME_PATH = HOME_ROUTE;
+export const WOMEN_HOME_CANONICAL = `${SITE_URL}${HOME_ROUTE}`;
 
 export const WOMEN_HOME_TITLE =
   "질성형수술(이쁜이수술·질축소수술) | 3중 복원 질성형 - 트리니티여성의원 강남";

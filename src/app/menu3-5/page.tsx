@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { WonderfillLandingSection } from "@/components/sections/wonderfill-landing-section";
 import { WebPageJsonLd } from "@/components/seo/json-ld";
+import { LandingSeo } from "@/components/seo/landing-seo";
 import { FILLER_ROUTES, SITE_NAME, SITE_URL } from "@/lib/site";
 
 const canonical = `${SITE_URL}${FILLER_ROUTES.hub}`;
@@ -40,6 +41,7 @@ export default function FillerPage() {
       />
       <div className="relative flex min-h-screen flex-col">
         <WonderfillLandingSection />
+        <LandingSeo topicId="filler" path={FILLER_ROUTES.hub} procedureType="NoninvasiveProcedure" />
       </div>
     </>
   );

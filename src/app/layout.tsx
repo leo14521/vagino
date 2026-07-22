@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll-provider";
-import Script from "next/script"; // [필수] Script 컴포넌트 추가
+import Script from "next/script";
 
 import Footer from "@/components/layout/footer";
 import FloatingBanner from "@/components/layout/floating-banner";
@@ -12,11 +12,11 @@ import { SITE_NAME, SITE_URL } from "@/lib/site";
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: `${SITE_NAME} | 질성형·질레이저·회음부관리`,
+    default: `${SITE_NAME} | 질성형·질레이저·외음부관리`,
     template: `%s | ${SITE_NAME}`,
   },
   description:
-    "트리니티여성의원 질성형, 질레이저(질쎄라·모나리자·리비브), 회음부관리(대음순수술·제모·미백) 안내. 강남 도산대로.",
+    "트리니티여성의원 질성형, 질레이저(질쎄라·모나리자·리비브), 외음부관리(대음순수술·제모·미백) 안내. 강남 도산대로.",
   keywords: [
     SITE_NAME,
     "질성형",
@@ -25,10 +25,10 @@ export const metadata: Metadata = {
     "질쎄라",
     "모나리자",
     "리비브",
-    "회음부관리",
+    "외음부관리",
     "대음순수술",
-    "회음부 제모",
-    "회음부 미백",
+    "외음부 제모",
+    "외음부 미백",
     "여성의원",
     "강남",
   ],
@@ -37,9 +37,9 @@ export const metadata: Metadata = {
     locale: "ko_KR",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: `${SITE_NAME} | 질성형·질레이저·회음부관리`,
+    title: `${SITE_NAME} | 질성형·질레이저·외음부관리`,
     description:
-      "질성형 수술, 질 레이저, 회음부 대음순·제모·미백 클리닉 안내. 상담·예약.",
+      "질성형 수술, 질 레이저, 외음부 대음순·제모·미백 클리닉 안내. 상담·예약.",
   },
   robots: {
     index: true,
@@ -72,7 +72,22 @@ export default function RootLayout({
     <html lang="ko" className="scroll-smooth">
       <head>
         <ClinicOrganizationJsonLd />
-        {/* 필요한 head 태그 내용이 있다면 여기에 유지 */}
+
+        {/* 폰트 — Pretendard + Noto Serif KR */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* eslint-disable-next-line @next/next/no-css-tags */}
+        <link
+          rel="stylesheet"
+          as="style"
+          crossOrigin="anonymous"
+          href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css"
+        />
+        {/* eslint-disable-next-line @next/next/no-css-tags */}
+        <link
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap"
+          rel="stylesheet"
+        />
 
         {/* GTM (Google Tag Manager) — GA4는 GTM 내 태그로만 운영 */}
         <Script id="google-tag-manager" strategy="afterInteractive">
@@ -103,11 +118,8 @@ export default function RootLayout({
           </GlobalChrome>
 
           <Footer />
+          <FloatingBanner />
         </SmoothScrollProvider>
-
-        {/* 4. 플로팅 배너 추가 */}
-        {/* 플로팅 요소(fixed)는 스크롤/transform의 영향을 받지 않도록 Provider 밖에 두는 것이 안전합니다. */}
-        <FloatingBanner />
       </body>
     </html>
   );
