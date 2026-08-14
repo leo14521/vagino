@@ -7,7 +7,153 @@
   # output: export 정적 산출물 — Next 런타임 플러그인 비활성
   NETLIFY_NEXT_PLUGIN_SKIP = "true"
 
+# Exact 301s first. More specific paths before parents. Force so static HTML does not win.
+[[redirects]]
+  from = "/menu3-3/clitoris"
+  to = "https://www.trinityclinic.co.kr/clitoroplasty"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3/clitoris/"
+  to = "https://www.trinityclinic.co.kr/clitoroplasty"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3/hair-removal"
+  to = "https://www.trinityclinic.co.kr/vulva-hair-removal"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3/hair-removal/"
+  to = "https://www.trinityclinic.co.kr/vulva-hair-removal"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3/whitening"
+  to = "https://www.trinityclinic.co.kr/vulva-whitening"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3/whitening/"
+  to = "https://www.trinityclinic.co.kr/vulva-whitening"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-4/monalisa"
+  to = "https://www.trinityclinic.co.kr/laser/mona-lisa-touch"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-4/monalisa/"
+  to = "https://www.trinityclinic.co.kr/laser/mona-lisa-touch"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-4/revive"
+  to = "https://www.trinityclinic.co.kr/laser/revive"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-4/revive/"
+  to = "https://www.trinityclinic.co.kr/laser/revive"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-1"
+  to = "https://www.trinityclinic.co.kr/vaginoplasty"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-1/"
+  to = "https://www.trinityclinic.co.kr/vaginoplasty"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-2"
+  to = "https://www.trinityclinic.co.kr/labiaplasty"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-2/"
+  to = "https://www.trinityclinic.co.kr/labiaplasty"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3"
+  to = "https://www.trinityclinic.co.kr/labia-majora"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-3/"
+  to = "https://www.trinityclinic.co.kr/labia-majora"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-4"
+  to = "https://www.trinityclinic.co.kr/laser/vagisera"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-4/"
+  to = "https://www.trinityclinic.co.kr/laser/vagisera"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-5"
+  to = "https://www.trinityclinic.co.kr/vaginal-filler"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/menu3-5/"
+  to = "https://www.trinityclinic.co.kr/vaginal-filler"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sling"
+  to = "https://www.trinityclinic.co.kr/sling"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/sling/"
+  to = "https://www.trinityclinic.co.kr/sling"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thankyou"
+  to = "https://www.trinityclinic.co.kr/consult/thank-you"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/thankyou/"
+  to = "https://www.trinityclinic.co.kr/consult/thank-you"
+  status = 301
+  force = true
+
 [[redirects]]
   from = "/"
-  to = "/menu3-1/"
-  status = 302
+  to = "https://www.trinityclinic.co.kr/vaginoplasty"
+  status = 301
+  force = true
